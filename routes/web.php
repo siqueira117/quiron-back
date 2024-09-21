@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use App\Http\Controllers\FarmaciaController;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,3 +18,15 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/key', function() {
+    return \Illuminate\Support\Str::random(32);
+});
+
+
+//rotas para inclusao das farmacias (e responsaveis)
+$router->get('/farmacia', 'FarmaciaController@index');
+$router->get('/farmacia/{id}', 'FarmaciaController@show');
+$router->put('/farmacia/{id}', 'FarmaciaController@update');
+$router->delete('/farmacia/{id}', 'FarmaciaController@destroy');
+$router->post('/farmacia', 'FarmaciaController@store');

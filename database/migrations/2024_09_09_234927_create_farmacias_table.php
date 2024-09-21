@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger('responsavel_id')->unique();
-            $table->foreign('responsavel_id')->references('id')->on('responsaveis');
+            $table->foreign('responsavel_id')->references('id')->on('responsaveis')->cascadeOnDelete();
         });
     }
 
