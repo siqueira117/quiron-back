@@ -24,9 +24,16 @@ $router->get('/key', function() {
 });
 
 
-//rotas para inclusao das farmacias (e responsaveis)
-$router->get('/farmacia', 'FarmaciaController@index');
-$router->get('/farmacia/{id}', 'FarmaciaController@show');
-$router->put('/farmacia/{id}', 'FarmaciaController@update');
-$router->delete('/farmacia/{id}', 'FarmaciaController@destroy');
-$router->post('/farmacia', 'FarmaciaController@store');
+//rotas para das farmacias (e responsaveis)
+
+$router->group(['prefix' => 'farmacia'], function () use ($router) {
+
+    $router->post('/', 'FarmaciaController@store');
+    $router->get('/', 'FarmaciaController@index');
+    $router->get('/{id}', 'FarmaciaController@show');
+    $router->put('/{id}', 'FarmaciaController@update');
+    $router->delete('/{id}', 'FarmaciaController@destroy');
+
+});
+
+

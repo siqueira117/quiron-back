@@ -48,6 +48,10 @@ class FarmaciaController extends Controller
 
     public function update($id, Request $request) {
 
+        $farmacia = new Farmacia();
+
+        $this->validate($request, $farmacia->rules());
+
         DB::beginTransaction();
 
         $farmacia = Farmacia::with('responsavel')->find($id);
@@ -60,24 +64,24 @@ class FarmaciaController extends Controller
 
         $responsavel->fill(
             [
-                "nome"      => $request->responsavel['nome']            ?? $responsavel->nome,
-                "email"     => $request->responsavel['email']           ?? $responsavel->email,
-                "telefone"  => $request->responsavel['telefone']        ?? $responsavel->telefone,
+                "nome"      => $request->responsavel['nome'],
+                "email"     => $request->responsavel['email'],
+                "telefone"  => $request->responsavel['telefone'],
             ]
         );
 
         $farmacia->fill(
             [
-                "nome"                  => $request->nome               ?? $farmacia->nome,
-                "nome_visualizacao"     => $request->nome_visualizacao  ?? $farmacia->nome_visualizacao,
-                "cnpj"                  => $request->cnpj               ?? $farmacia->cnpj,
-                "cep"                   => $request->cep                ?? $farmacia->cep,
-                "logradouro"            => $request->logradouro         ?? $farmacia->logradouro,
-                "complemento"           => $request->complemento        ?? $farmacia->complemento,
-                "numero"                => $request->numero             ?? $farmacia->numero,
-                "bairro"                => $request->bairro             ?? $farmacia->bairro,
-                "cidade"                => $request->cidade             ?? $farmacia->cidade,
-                "uf"                    => $request->uf                 ?? $farmacia->uf,
+                "nome"                  => $request->nome,
+                "nome_visualizacao"     => $request->nome_visualizacao,
+                "cnpj"                  => $request->cnpj,
+                "cep"                   => $request->cep,
+                "logradouro"            => $request->logradouro,
+                "complemento"           => $request->complemento,
+                "numero"                => $request->numero,
+                "bairro"                => $request->bairro,
+                "cidade"                => $request->cidade,
+                "uf"                    => $request->uf,
             ]
         );
 
@@ -92,6 +96,10 @@ class FarmaciaController extends Controller
     }
 
     public function store(Request $request) {
+
+        $farmacia = new Farmacia();
+        
+        $this->validate($request, $farmacia->rules());
 
         DB::beginTransaction();
 

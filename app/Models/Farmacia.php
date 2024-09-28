@@ -22,6 +22,24 @@ class Farmacia extends Model implements AuthenticatableContract, AuthorizableCon
         'nome', 'nome_visualizacao', 'cnpj', 'cep', 'logradouro', 'complemento', 'numero', 'bairro', 'cidade', 'uf', 'responsavel_id'
     ];
 
+    public function rules() {
+        return [
+            'nome' => 'required',
+            'nome_visualizacao' => 'required',
+            'cnpj' => 'required|size:14',
+            'cep' => 'required|size:8',
+            'logradouro' => 'required',
+            'numero' => 'required|integer',
+            'bairro' => 'required',
+            'cidade' => 'required',
+            'uf' => 'required',
+
+            'responsavel.nome' => 'required',
+            'responsavel.email' => 'required|email',
+            'responsavel.telefone' => 'required|size:11',
+        ];
+    }
+
     /**
      * The attributes excluded from the model's JSON form.
      *
