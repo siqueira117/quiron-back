@@ -6,6 +6,7 @@ use App\Models\Farmacia;
 use App\Models\Responsavel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class FarmaciaController extends Controller
 {
@@ -97,9 +98,15 @@ class FarmaciaController extends Controller
 
     public function store(Request $request) {
 
-        $farmacia = new Farmacia();
-        
-        $this->validate($request, $farmacia->rules());
+        $farmacia = new Farmacia(); 
+        $validated = Validator::make($request->all(), $farmacia->rules());
+        if (!$validated->passes()) {
+            return response()
+                ->json([
+                    'retcode' => -1,
+                    'message' => $validated->errors()->all() 
+                ], 500);
+        }
 
         DB::beginTransaction();
 
@@ -129,6 +136,6 @@ class FarmaciaController extends Controller
 
         DB::commit();
 
-        return $farmacia;
+        return response()->json($farmacia);
     }
 }

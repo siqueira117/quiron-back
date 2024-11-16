@@ -47,6 +47,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "localserver": [
+            "php -S localhost:8000 -t public"
         ]
     },
     "extra": {

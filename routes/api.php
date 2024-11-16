@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FarmaciaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //rotas para das farmacias (e responsaveis)
 $router->group(['prefix' => 'farmacia'], function () use ($router) {
 
-    $router->post('/', 'FarmaciaController@store');
-    $router->get('/', 'FarmaciaController@index');
-    $router->get('/{id}', 'FarmaciaController@show');
-    $router->put('/{id}', 'FarmaciaController@update');
-    $router->delete('/{id}', 'FarmaciaController@destroy');
+    $router->post('/', [FarmaciaController::class, 'store']);
+    $router->get('/', [FarmaciaController::class, 'index']);
+    $router->get('/{id}', [FarmaciaController::class, 'show']);
+    $router->put('/{id}', [FarmaciaController::class, 'update']);
+    $router->delete('/{id}', [FarmaciaController::class, 'destroy']);
 
 });
