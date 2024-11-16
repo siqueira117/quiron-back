@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Rules\UrlPattern;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +22,7 @@ class Farmacia extends Model
     public function rules() {
         return [
             'nome' => 'required',
-            'nome_visualizacao' => 'required',
+            'nome_visualizacao' => ['required', new UrlPattern],
             'cnpj' => 'required|size:14',
             'cep' => 'required|size:8',
             'logradouro' => 'required',
