@@ -98,8 +98,11 @@ class FarmaciaController extends Controller
 
     public function store(Request $request) {
 
+        $this->postProcessFarmaciaStore($request->nome_visualizacao);
+
         $farmacia = new Farmacia(); 
         $validated = Validator::make($request->all(), $farmacia->rules());
+        
         if (!$validated->passes()) {
             return response()
                 ->json([
@@ -137,5 +140,16 @@ class FarmaciaController extends Controller
         DB::commit();
 
         return response()->json($farmacia);
+    }
+
+    private function postProcessFarmaciaStore(string $databaseName): array {
+        try {
+            $tenant = \App\Models\Tenant::create(['id' => $databaseName]);
+            $tenant->domains()->create(['domain' => "$databaseName.localhost"]);
+
+            return ["retcode" => 0, "message" => "OK"];
+        } catch (\Exception $e) {
+            return ["retcode" => -1, "message" => $e->getMessage(), "code" => $e->getCode()];
+        }
     }
 }
