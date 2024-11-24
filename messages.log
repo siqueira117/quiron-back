@@ -1,0 +1,4 @@
+[NOTICE][24/11/2024 - 04:39:30][e4f77d97387504b68eeb06ae4368da26] - postProcessFarmaciaStore::START
+[ERROR][24/11/2024 - 04:39:34][e4f77d97387504b68eeb06ae4368da26] - ERROR: SQLSTATE[HY000] [2002] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente (Connection: mysql, SQL: insert into `tenants` (`id`, `data`, `updated_at`, `created_at`) values (certa-mc, [], 2024-11-24 04:39:30, 2024-11-24 04:39:30))
+[NOTICE][24/11/2024 - 04:39:45][ba33120d21044e9fdd98041eaa46a1db] - postProcessFarmaciaStore::START
+[ERROR][24/11/2024 - 04:39:49][ba33120d21044e9fdd98041eaa46a1db] - ERROR: SQLSTATE[HY000] [2002] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente (Connection: mysql, SQL: insert into `tenants` (`id`, `data`, `updated_at`, `created_at`) values (certa-mc, [], 2024-11-24 04:39:45, 2024-11-24 04:39:45))

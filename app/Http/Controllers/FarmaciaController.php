@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Logger;
 use App\Models\Farmacia;
 use App\Models\Responsavel;
 use Illuminate\Http\Request;
@@ -144,11 +145,14 @@ class FarmaciaController extends Controller
 
     private function postProcessFarmaciaStore(string $databaseName): array {
         try {
+            Logger::register(LOG_NOTICE, __FUNCTION__ . "::START");
             $tenant = \App\Models\Tenant::create(['id' => $databaseName]);
             $tenant->domains()->create(['domain' => "$databaseName.localhost"]);
 
+            Logger::register(LOG_NOTICE, __FUNCTION__ . "::END");
             return ["retcode" => 0, "message" => "OK"];
         } catch (\Exception $e) {
+            Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
             return ["retcode" => -1, "message" => $e->getMessage(), "code" => $e->getCode()];
         }
     }
