@@ -4,7 +4,8 @@ namespace App\Helpers;
 
 class Logger {
     const __ARQUIVO_LOG__   = __DIR__."/../../messages.log";
-    private static $pid     = null;
+    private static $id      = null;
+    private static $pid     = [];
 
     /**
     * Registra log no arquivo messages.log
@@ -35,28 +36,43 @@ class Logger {
     private static function getLevelString(int $logLevel): string 
     {
         $levels = [
+            1 => "EMERG",
             4 => "ERROR",
             6 => "NOTICE"
         ];
 
-        return $levels[$logLevel] ?? "ERROR";
+        return $levels[$logLevel] ?? $logLevel;
     }
 
     private static function generatePID(): string 
     {
         $remoteAddr = sha1($_SERVER['REMOTE_ADDR']);
         $first      = substr($remoteAddr, 0, 5); 
-        $last       = substr($remoteAddr, -5);
-    
-        return md5($first.".".$last.".".self::getPID());
-    }
 
-    private static function getPID(): string 
-    {
-        if (is_null(self::$pid)) {
-            self::$pid = uniqid();
+        if (array_key_exists($first, self::$pid)) {
+            return self::$pid[$first];
         }
 
-        return self::$pid;
+        $last = substr($remoteAddr, -5);
+        $hash = md5($first.".".$last.".".self::getID());
+        self::$pid[$first] = $hash;
+        return $hash;
+    }
+
+    private static function getID(): string 
+    {
+        if (is_null(self::$id)) {
+            self::$id = uniqid();
+        }
+
+        return self::$id;
+    }
+
+    public static function getPID(): string 
+    {
+        $remoteAddr = sha1($_SERVER['REMOTE_ADDR']);
+        $first      = substr($remoteAddr, 0, 5); 
+
+        return self::$pid[$first];
     }
 }

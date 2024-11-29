@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Rules\Sha1;
 use App\Rules\UrlPattern;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,14 +17,14 @@ class Farmacia extends Model
      * @var string[]
      */
     protected $fillable = [
-        'nome', 'nome_visualizacao', 'cnpj', 'cep', 'logradouro', 'complemento', 'numero', 'bairro', 'cidade', 'uf', 'responsavel_id'
+        'nome', 'nome_visualizacao', 'cnpj', 'cep', 'logradouro', 'complemento', 'numero', 'bairro', 'cidade', 'uf', 'dados_receita', 'responsavel_id'
     ];
 
     public function rules() {
         return [
             'nome' => 'required',
-            'nome_visualizacao' => ['required', new UrlPattern],
-            'cnpj' => 'required|size:14',
+            'nome_visualizacao' => ['required', new UrlPattern, 'unique:farmacias,nome_visualizacao'],
+            'cnpj' => 'required|size:14|unique:farmacias,cnpj',
             'cep' => 'required|size:8',
             'logradouro' => 'required',
             'numero' => 'required|integer',
@@ -34,6 +35,7 @@ class Farmacia extends Model
             'responsavel.nome' => 'required',
             'responsavel.email' => 'required|email',
             'responsavel.telefone' => 'required|size:11',
+            'responsavel.senha' => ['required', new Sha1]
         ];
     }
 
@@ -43,7 +45,7 @@ class Farmacia extends Model
      * @var string[]
      */
     protected $hidden = [
-        'responsavel_id',
+        'responsavel_id', 'dados_receita'
     ];
 
     public function responsavel() {

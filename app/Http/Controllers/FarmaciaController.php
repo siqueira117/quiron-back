@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Logger;
+use App\Helpers\Password;
 use App\Models\Farmacia;
 use App\Models\Responsavel;
+use App\Models\Tenant;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 class FarmaciaController extends Controller
@@ -98,20 +102,72 @@ class FarmaciaController extends Controller
     }
 
     public function store(Request $request) {
+        try {
+            Logger::register(LOG_NOTICE, __METHOD__ . "::START");
 
-        $this->postProcessFarmaciaStore($request->nome_visualizacao);
+            $farmacia   = new Farmacia(); 
+            $validated  = Validator::make($request->all(), $farmacia->rules());
 
-        $farmacia = new Farmacia(); 
-        $validated = Validator::make($request->all(), $farmacia->rules());
+            if (!$validated->passes()) {
+                $responseJSON = [
+                    'retcode'   => -1,
+                    'message'   => $validated->errors()->all(),
+                    'pid'       => Logger::getPID()
+                ];
+                Logger::register(LOG_ERR, __METHOD__ . " - Erro de validação - " . json_encode($responseJSON));
+                
+                return response()->json($responseJSON, 400);
+            }
+
+            $dadosReceita   = $this->consultaDadosReceita($request->cnpj);
+            $farmaciaCriada = $this->storeFarmaciaEResponsavel($request, $dadosReceita);
+            $this->postProcessFarmaciaStore($request);
+
+            $responseJSON = [
+                "retcode"   => 0,
+                "message"   => "Registro criado com sucesso!",
+                "rows"      => [$farmaciaCriada],
+                "pid"       => Logger::getPID()
+            ];
+            Logger::register(LOG_NOTICE, "Registro criado com sucesso - Response: " . json_encode($responseJSON));
+            Logger::register(LOG_NOTICE, __METHOD__ . "::END");
+
+            return response()->json($responseJSON, 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                "retcode"   => -1, 
+                "message"   => $e->getMessage(), 
+                "code"      => $e->getCode(),
+                "pid"       => Logger::getPID()
+            ], 500);
+        }
+    }
+
+    private function consultaDadosReceita(string $cnpj): string 
+    {
+        Logger::register(LOG_NOTICE, __METHOD__ . "::START");
+
+        $response   = Http::get("https://open.cnpja.com/office/$cnpj");
         
-        if (!$validated->passes()) {
-            return response()
-                ->json([
-                    'retcode' => -1,
-                    'message' => $validated->errors()->all() 
-                ], 500);
+        if ($response->failed()) {
+            Logger::register(LOG_ERR, "Retorno da API de consulta: " . json_encode($response->json()));
+            
+            $responseJSON = [
+                'retcode' => -1,
+                'message' => "Erro ao consultar CNPJ na Receita Federal" 
+            
+            ];
+            Logger::register(LOG_ERR, __METHOD__ . " - Erro na consulta - " . json_encode($responseJSON));
+            return response()->json($responseJSON, 500);
         }
 
+        Logger::register(LOG_NOTICE, "Dados da receita gravados com sucesso!");
+        Logger::register(LOG_NOTICE, __METHOD__ . "::OK");
+        return json_encode($response->json());
+    }
+
+    private function storeFarmaciaEResponsavel(Request $request, string $dadosReceita): Farmacia 
+    {
         DB::beginTransaction();
 
         $responsavel = Responsavel::create(
@@ -134,26 +190,56 @@ class FarmaciaController extends Controller
                 "bairro"                => $request->bairro,
                 "cidade"                => $request->cidade,
                 "uf"                    => $request->uf,
+                "dados_receita"         => $dadosReceita,
                 "responsavel_id"        => $responsavel->id,
             ]
         );
 
         DB::commit();
-
-        return response()->json($farmacia);
+        return $farmacia;
     }
 
-    private function postProcessFarmaciaStore(string $databaseName): array {
-        try {
-            Logger::register(LOG_NOTICE, __FUNCTION__ . "::START");
-            $tenant = \App\Models\Tenant::create(['id' => $databaseName]);
-            $tenant->domains()->create(['domain' => "$databaseName.localhost"]);
-
-            Logger::register(LOG_NOTICE, __FUNCTION__ . "::END");
-            return ["retcode" => 0, "message" => "OK"];
-        } catch (\Exception $e) {
-            Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
-            return ["retcode" => -1, "message" => $e->getMessage(), "code" => $e->getCode()];
-        }
+    private function postProcessFarmaciaStore(Request $request): void 
+    {
+        Logger::register(LOG_NOTICE, __FUNCTION__ . "::START");
+        
+        $tenant = $this->createCustomDB($request->nome_visualizacao);
+        $this->createUserForResponsavel($tenant, $request->responsavel);
+    
+        Logger::register(LOG_NOTICE, __FUNCTION__ . "::END");
     }
+
+    private function createCustomDB(string $databaseName): Tenant 
+    {
+        Logger::register(LOG_NOTICE, __FUNCTION__ . "::START");
+
+        $tenant = Tenant::create(['id' => $databaseName]);
+        $tenant->domains()->create(['domain' => "$databaseName.localhost"]);
+
+        Logger::register(LOG_NOTICE, "Banco '$databaseName' criado com sucesso!");
+        Logger::register(LOG_NOTICE, __FUNCTION__ . "::END");
+
+        return $tenant;
+    }
+
+    private function createUserForResponsavel(Tenant $tenant,array $responsavel) 
+    {
+        Logger::register(LOG_NOTICE, __METHOD__ . "::START");
+
+        $tenant->run(function () use ($responsavel) {
+            DB::beginTransaction();
+
+            $usuario = Usuario::create([
+                'nome' => $responsavel["nome"],
+                'email' => $responsavel["email"],
+                'senha' => Password::generate($responsavel["senha"])
+            ]);
+
+            DB::commit();
+            Logger::register(LOG_NOTICE, "Usuário criado com sucesso - " . json_encode($usuario));
+        });
+
+        Logger::register(LOG_NOTICE, __METHOD__ . "::OK");
+    }
+
 }

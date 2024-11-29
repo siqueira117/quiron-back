@@ -14,15 +14,16 @@ return new class extends Migration
         Schema::create('farmacias', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 150);
-            $table->string('nome_visualizacao', 150);
-            $table->char('cnpj', 14);
+            $table->string('nome_visualizacao', 150)->unique();
+            $table->char('cnpj', 14)->unique();
             $table->char('cep', 14);
             $table->string('logradouro', 150);
-            $table->string('complemento');
+            $table->string('complemento')->nullable();
             $table->integer('numero');
             $table->string('bairro', 150);
             $table->string('cidade', 150);
             $table->char('uf', 2);
+            $table->json('dados_receita');
             $table->timestamps();
 
             $table->unsignedBigInteger('responsavel_id')->unique();
