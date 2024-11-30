@@ -26,6 +26,7 @@ class Logger {
     * @return void
     */
     public static function register(int $logLevel, string $message) {
+        date_default_timezone_set('America/Sao_Paulo');
         $pid                = self::generatePID();
         $logLevelString     = self::getLevelString($logLevel);
         $openLog            = self::getOpenLog();
@@ -77,7 +78,7 @@ class Logger {
         $remoteAddr = sha1($_SERVER['REMOTE_ADDR']);
         $first      = substr($remoteAddr, 0, 5); 
 
-        return self::$pid[$first];
+        return self::$pid[$first] ?? self::generatePID();
     }
 
     public static function openLog(string $nome): void 

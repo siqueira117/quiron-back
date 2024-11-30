@@ -216,6 +216,7 @@ class FarmaciaController extends Controller
 
     public function store(Request $request) {
         try {
+            Logger::openLog("farmacia-store");
             Logger::register(LOG_NOTICE, __METHOD__ . "::START");
 
             $farmacia   = new Farmacia(); 
