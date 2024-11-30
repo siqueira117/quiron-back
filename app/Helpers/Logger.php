@@ -6,7 +6,7 @@ class Logger {
     const __ARQUIVO_LOG__   = __DIR__."/../../messages.log";
     private static $id      = null;
     private static $pid     = [];
-
+    private static $openLog = null;
     /**
     * Registra log no arquivo messages.log
     * 
@@ -28,7 +28,11 @@ class Logger {
     public static function register(int $logLevel, string $message) {
         $pid                = self::generatePID();
         $logLevelString     = self::getLevelString($logLevel);
+        $openLog            = self::getOpenLog();
         $data               = "[$logLevelString][".date("d/m/Y - H:i:s")."][$pid]";
+        if ($openLog) {
+            $data .= "[$openLog]";
+        }
         $messageToRegister  = "$data - $message\n";
         file_put_contents(self::__ARQUIVO_LOG__, $messageToRegister, FILE_APPEND | LOCK_EX);
     }
@@ -74,5 +78,15 @@ class Logger {
         $first      = substr($remoteAddr, 0, 5); 
 
         return self::$pid[$first];
+    }
+
+    public static function openLog(string $nome): void 
+    {
+        self::$openLog = $nome;
+    }
+
+    private static function getOpenLog(): ?string  
+    {       
+        return self::$openLog;
     }
 }

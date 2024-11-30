@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Logger;
 use App\Helpers\Password;
+use App\Http\Requests\UpdateFarmacia;
 use App\Models\Farmacia;
 use App\Models\Responsavel;
 use App\Models\Tenant;
 use App\Models\Usuario;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -74,72 +76,142 @@ class FarmaciaController extends Controller
 
     }
 
-    public function destroy($id) {
+    public function destroy($id): JsonResponse
+    {
+        try {
+            Logger::openLog("farmacia-destroy-$id");
+            Logger::register(LOG_NOTICE, __METHOD__ . "::START");
 
-        DB::beginTransaction();
+            DB::beginTransaction();
 
-        $farmacia = Farmacia::with('responsavel')->find($id);
+            $farmacia = Farmacia::with('responsavel')->find($id);
+    
+            if (!$farmacia) {
+                $msg = "Impossível realizar a exclusão. O recurso solicitado não existe";
+                $responseJSON = [
+                    "retcode"   => -1,
+                    "message"   => $msg,
+                    "pid"       => Logger::getPID()
+                ];
 
-        if ($farmacia == null) {
-            return response()->json(['erro' => 'Impossível realizar a exclusão. O recurso solicitado não existe'], 404);
+                Logger::register(LOG_ERR, "ERRO: $msg");
+                Logger::register(LOG_NOTICE, "Response: " . json_encode($responseJSON));
+                
+                return response()->json($responseJSON, 404);
+            }
+    
+            Responsavel::destroy($farmacia->responsavel_id);
+    
+            $farmacia->delete();
+            DB::commit();
+    
+            $responseJSON = [
+                "retcode"   => 0,
+                "message"   => "Registro removido com sucesso!",
+                "pid"       => Logger::getPID()
+            ];
+
+            Logger::register(LOG_NOTICE, "Response: " . json_encode($responseJSON));
+            Logger::register(LOG_NOTICE, __METHOD__ . "::OK");
+            return response()->json($responseJSON);
+        } catch (\Exception $e) {
+            Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
+            return response()->json([
+                "retcode"   => -1, 
+                "message"   => "Erro ao excluir dados da farmácia", 
+                "code"      => $e->getCode(),
+                "pid"       => Logger::getPID()
+            ], 500);
         }
-
-        Responsavel::destroy($farmacia->responsavel_id);
-
-        $farmacia->delete();
-        DB::commit();
-
-        return response()->json(['msg' => 'A registro foi removido com sucesso!'], 200);
-
     }
 
-    public function update($id, Request $request) {
+    public function update($id, Request $request) 
+    {
+        try {
+            Logger::openLog("farmacia-update-$id");
+            Logger::register(LOG_NOTICE, __METHOD__ . "::START");
 
-        $farmacia = new Farmacia();
+            $update     = new UpdateFarmacia();
+            $validated  = Validator::make($request->all(), $update->rules());
 
-        $this->validate($request, $farmacia->rules());
+            if (!$validated->passes()) {
+                $responseJSON = [
+                    'retcode'   => -1,
+                    'message'   => $validated->errors()->all(),
+                    'pid'       => Logger::getPID()
+                ];
+                Logger::register(LOG_ERR, __METHOD__ . " - Erro de validação - " . json_encode($responseJSON));
 
-        DB::beginTransaction();
+                return response()->json($responseJSON, 400);
+            }
 
-        $farmacia = Farmacia::with('responsavel')->find($id);
+            DB::beginTransaction();
 
-        if ($farmacia == null) {
-            return response()->json(['erro' => 'Impossível realizar a atualização. O recurso solicitado não existe'], 404);
+            $farmacia = Farmacia::with('responsavel')->find($id);
+
+            if (!$farmacia) {
+                $msg = "Impossível realizar a atualização. O recurso solicitado não existe";
+                $responseJSON = [
+                    "retcode"   => -1,
+                    "message"   => $msg,
+                    "pid"       => Logger::getPID()
+                ];
+
+                Logger::register(LOG_ERR, "ERRO: $msg");
+                Logger::register(LOG_NOTICE, "Response: " . json_encode($responseJSON));
+                
+                return response()->json($responseJSON, 404);
+            }
+
+            $responsavel = Responsavel::find($farmacia->responsavel_id);
+
+            $responsavel->fill(
+                [
+                    "nome"      => $request->responsavel['nome'],
+                    "email"     => $request->responsavel['email'],
+                    "telefone"  => $request->responsavel['telefone'],
+                ]
+            );
+
+            $farmacia->fill(
+                [
+                    "nome"                  => $request->nome,
+                    "cnpj"                  => $request->cnpj,
+                    "cep"                   => $request->cep,
+                    "logradouro"            => $request->logradouro,
+                    "complemento"           => $request->complemento,
+                    "numero"                => $request->numero,
+                    "bairro"                => $request->bairro,
+                    "cidade"                => $request->cidade,
+                    "uf"                    => $request->uf
+                ]
+            );
+
+            $responsavel->save();
+            $farmacia->save();
+
+            DB::commit();
+
+            $responseJSON = [
+                "retcode"   => 0,
+                "message"   => "Registro alterado com sucesso!",
+                "rows"      => [Farmacia::with('responsavel')->find($id)],
+                "pid"       => Logger::getPID()
+            ];
+
+            Logger::register(LOG_NOTICE, "Response: " . json_encode($responseJSON));
+            Logger::register(LOG_NOTICE, __METHOD__ . "::OK");
+            return response()->json($responseJSON);
+        } catch (\Exception $e) {
+            Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
+            return response()->json([
+                "retcode"   => -1, 
+                "message"   => "Erro ao alterar dados da farmácia", 
+                "code"      => $e->getCode(),
+                "pid"       => Logger::getPID()
+            ], 500);
         }
-
-        $responsavel = Responsavel::find($farmacia->responsavel_id);
-
-        $responsavel->fill(
-            [
-                "nome"      => $request->responsavel['nome'],
-                "email"     => $request->responsavel['email'],
-                "telefone"  => $request->responsavel['telefone'],
-            ]
-        );
-
-        $farmacia->fill(
-            [
-                "nome"                  => $request->nome,
-                "nome_visualizacao"     => $request->nome_visualizacao,
-                "cnpj"                  => $request->cnpj,
-                "cep"                   => $request->cep,
-                "logradouro"            => $request->logradouro,
-                "complemento"           => $request->complemento,
-                "numero"                => $request->numero,
-                "bairro"                => $request->bairro,
-                "cidade"                => $request->cidade,
-                "uf"                    => $request->uf,
-            ]
-        );
-
-
-
-        $responsavel->save();
-        $farmacia->save();
-
-        DB::commit();
-
-        return response()->json(Farmacia::with('responsavel')->find($id));
+        
     }
 
     public function store(Request $request) {
@@ -175,6 +247,7 @@ class FarmaciaController extends Controller
 
             return response()->json($responseJSON, 200);
         } catch (\Exception $e) {
+            Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
             return response()->json([
                 "retcode"   => -1, 
                 "message"   => $e->getMessage(), 
