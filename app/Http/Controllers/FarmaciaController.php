@@ -26,11 +26,52 @@ class FarmaciaController extends Controller
     }
 
     public function index() {
-        return response()->json(Farmacia::with('responsavel')->get());
+        try {
+            Logger::register(LOG_NOTICE, __METHOD__ . "::START");
+        
+            $farmacias = Farmacia::with('responsavel')->get();
+            $responseJSON = [
+                "retcode"   => 0,
+                "message"   => "Registros recuperados com sucesso!",
+                "rows"      => $farmacias,
+                "pid"       => Logger::getPID()
+            ];
+    
+            Logger::register(LOG_NOTICE, "Response: " . json_encode($responseJSON));
+            Logger::register(LOG_NOTICE, __METHOD__ . "::OK");
+            return response()->json($responseJSON, 200);                
+        } catch (\Exception $e) {
+            Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
+            return response()->json([
+                "retcode" => -1,
+                "message" => $e->getMessage()
+            ], 500);                
+        }
     }
 
     public function show($id) {
-        return response()->json(Farmacia::with('responsavel')->find($id));
+        try {
+            Logger::register(LOG_NOTICE, __METHOD__ . "::START");
+
+            $farmacia = Farmacia::with('responsavel')->find($id);
+            $responseJSON = [
+                "retcode"   => 0,
+                "message"   => "Registro recuperado com sucesso!",
+                "rows"      => [$farmacia],
+                "pid"       => Logger::getPID()
+            ];
+
+            Logger::register(LOG_NOTICE, "Response: " . json_encode($responseJSON));
+            Logger::register(LOG_NOTICE, __METHOD__ . "::OK");
+            return response()->json($responseJSON, 200);
+        } catch (\Exception $e) {
+            Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
+            return response()->json([
+                "retcode" => -1,
+                "message" => $e->getMessage()
+            ], 500);   
+        }
+
     }
 
     public function destroy($id) {
