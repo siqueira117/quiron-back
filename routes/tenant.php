@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\SetoresController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -38,6 +39,10 @@ Route::middleware([
     Route::prefix("produtos")->group(function () {
         Route::get('/', [ProdutoController::class, 'index']);
         Route::post('/', [ProdutoController::class, 'store']);
+    });
+
+    Route::prefix("setores")->group(function () {
+        Route::get('/', [SetoresController::class, 'index']);
     });
 
 });

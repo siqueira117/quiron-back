@@ -1,0 +1,22 @@
+[NOTICE][02/12/2024 - 17:51:27][dd02af62b89a0ee8742b40a24bc29ecd][produto-index] - App\Http\Controllers\ProdutoController::index::START
+[NOTICE][02/12/2024 - 17:51:27][dd02af62b89a0ee8742b40a24bc29ecd][produto-index] - Response: {"retcode":0,"message":"Registros recuperados com sucesso!","rows":[],"pid":"dd02af62b89a0ee8742b40a24bc29ecd"}
+[NOTICE][02/12/2024 - 17:51:27][dd02af62b89a0ee8742b40a24bc29ecd][produto-index] - App\Http\Controllers\ProdutoController::index::OK
+[NOTICE][02/12/2024 - 17:52:04][ec554fbb786780d8fc5e635821d3fa4c][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::START
+[ERROR][02/12/2024 - 17:52:05][ec554fbb786780d8fc5e635821d3fa4c][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store - Erro de validação - {"retcode":-1,"message":["The nome field is required.","The valor field is required.","The descricao field is required.","The subcategoria id field is required."],"pid":"ec554fbb786780d8fc5e635821d3fa4c"}
+[NOTICE][02/12/2024 - 18:34:33][65050eaec20154cc224526175f722beb][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][02/12/2024 - 18:34:34][65050eaec20154cc224526175f722beb][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][02/12/2024 - 18:34:36][65050eaec20154cc224526175f722beb][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][02/12/2024 - 18:34:36][65050eaec20154cc224526175f722beb][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][02/12/2024 - 18:34:37][65050eaec20154cc224526175f722beb][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][02/12/2024 - 18:34:37][65050eaec20154cc224526175f722beb][farmacia-store] - createCustomDB::START
+[NOTICE][02/12/2024 - 18:34:40][65050eaec20154cc224526175f722beb][farmacia-store] - Banco 'pacheco-mc' criado com sucesso!
+[NOTICE][02/12/2024 - 18:34:40][65050eaec20154cc224526175f722beb][farmacia-store] - createCustomDB::END
+[NOTICE][02/12/2024 - 18:34:40][65050eaec20154cc224526175f722beb][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::START
+[NOTICE][02/12/2024 - 18:34:40][65050eaec20154cc224526175f722beb][farmacia-store] - Usuário criado com sucesso - {"nome":"Erick Oliveira","email":"erick_santosss00@outlook.com","updated_at":"2024-12-02T21:34:40.000000Z","created_at":"2024-12-02T21:34:40.000000Z","id":1}
+[NOTICE][02/12/2024 - 18:34:40][65050eaec20154cc224526175f722beb][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::OK
+[NOTICE][02/12/2024 - 18:34:40][65050eaec20154cc224526175f722beb][farmacia-store] - postProcessFarmaciaStore::END
+[NOTICE][02/12/2024 - 18:34:40][65050eaec20154cc224526175f722beb][farmacia-store] - Registro criado com sucesso - Response: {"retcode":0,"message":"Registro criado com sucesso!","rows":[{"nome":"FarmaCouto","nome_visualizacao":"pacheco-mc","cnpj":"33438250000167","cep":"26070374","logradouro":"Rua Carlos Henrique","complemento":null,"numero":"11","bairro":"Miguel Couto","cidade":"Nova Igua\u00e7u","uf":"RJ","updated_at":"2024-12-02T21:34:37.000000Z","created_at":"2024-12-02T21:34:37.000000Z","id":1}],"pid":"65050eaec20154cc224526175f722beb"}
+[NOTICE][02/12/2024 - 18:34:40][65050eaec20154cc224526175f722beb][farmacia-store] - App\Http\Controllers\FarmaciaController::store::END
+[NOTICE][02/12/2024 - 19:05:46][92ac8d01562c835e19fd310f144b226e] - App\Http\Controllers\SetoresController::index::START
+[NOTICE][02/12/2024 - 19:05:46][92ac8d01562c835e19fd310f144b226e] - Response: {"retcode":0,"message":"Registros recuperados com sucesso!","rows":[{"id":1,"nome":"Medicamentos","created_at":"2024-12-02T21:34:39.000000Z","updated_at":"2024-12-02T21:34:39.000000Z"},{"id":2,"nome":"Vida Saud\u00e1vel","created_at":"2024-12-02T21:34:39.000000Z","updated_at":"2024-12-02T21:34:39.000000Z"},{"id":3,"nome":"Mam\u00e3e e beb\u00ea","created_at":"2024-12-02T21:34:39.000000Z","updated_at":"2024-12-02T21:34:39.000000Z"},{"id":4,"nome":"Beleza","created_at":"2024-12-02T21:34:39.000000Z","updated_at":"2024-12-02T21:34:39.000000Z"},{"id":5,"nome":"Cabelo","created_at":"2024-12-02T21:34:39.000000Z","updated_at":"2024-12-02T21:34:39.000000Z"},{"id":6,"nome":"Higiene Pessoal","created_at":"2024-12-02T21:34:39.000000Z","updated_at":"2024-12-02T21:34:39.000000Z"}],"pid":"92ac8d01562c835e19fd310f144b226e"}
+[NOTICE][02/12/2024 - 19:05:46][92ac8d01562c835e19fd310f144b226e] - App\Http\Controllers\SetoresController::index::OK
