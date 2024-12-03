@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\ProdutoController;
-use App\Http\Controllers\SetoresController;
+use App\Http\Controllers\SetorController;
+use App\Models\Setores;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -41,8 +42,13 @@ Route::middleware([
         Route::post('/', [ProdutoController::class, 'store']);
     });
 
+    // Setores
     Route::prefix("setores")->group(function () {
-        Route::get('/', [SetoresController::class, 'index']);
+        Route::get('/', [SetorController::class, 'index']);
+        Route::post('/', [SetorController::class, 'store']);
+        Route::delete('/{id}', [SetorController::class, 'destroy']);
+        Route::get('/{id}', [SetorController::class, 'show']);
+        Route::put('/{id}', [SetorController::class, 'update']);
     });
 
 });

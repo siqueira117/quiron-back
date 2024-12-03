@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Logger;
 use App\Helpers\Password;
+use App\Helpers\Response;
 use App\Http\Requests\UpdateFarmacia;
 use App\Models\Farmacia;
 use App\Models\Responsavel;
@@ -88,15 +89,7 @@ class FarmaciaController extends Controller
     
             if (!$farmacia) {
                 $msg = "Impossível realizar a exclusão. O recurso solicitado não existe";
-                $responseJSON = [
-                    "retcode"   => -1,
-                    "message"   => $msg,
-                    "pid"       => Logger::getPID()
-                ];
-
-                Logger::register(LOG_ERR, "ERRO: $msg");
-                Logger::register(LOG_NOTICE, "Response: " . json_encode($responseJSON));
-                
+                $responseJSON = Response::validationError($msg);
                 return response()->json($responseJSON, 404);
             }
     
@@ -105,13 +98,7 @@ class FarmaciaController extends Controller
             $farmacia->delete();
             DB::commit();
     
-            $responseJSON = [
-                "retcode"   => 0,
-                "message"   => "Registro removido com sucesso!",
-                "pid"       => Logger::getPID()
-            ];
-
-            Logger::register(LOG_NOTICE, "Response: " . json_encode($responseJSON));
+            $responseJSON = Response::destroy();
             Logger::register(LOG_NOTICE, __METHOD__ . "::OK");
             return response()->json($responseJSON);
         } catch (\Exception $e) {
