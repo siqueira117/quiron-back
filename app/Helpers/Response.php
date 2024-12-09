@@ -64,4 +64,17 @@ class Response {
         Logger::register(LOG_NOTICE, "Registros alterados - Response: " . json_encode($responseJSON));
         return $responseJSON;
     }
+
+    public static function show($registro): array 
+    {
+        $responseJSON = [
+            "retcode"   => 0,
+            "message"   => "Registros recuperados com sucesso!",
+            "rows"      => $registro,
+            "pid"       => Logger::getPID()
+        ];
+
+        Logger::register(LOG_NOTICE, "Registros consultado - Response: " . json_encode($responseJSON));
+        return $responseJSON;
+    }
 }

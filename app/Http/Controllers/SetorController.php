@@ -180,4 +180,29 @@ class SetorController extends Controller
             ], 500);
         }
     }
+
+    public function show($id): JsonResponse 
+    {
+        try {
+            Logger::register(LOG_NOTICE, __METHOD__ . "::START");
+        
+            $setor = Setor::find($id);
+
+            if (!$setor) {
+                $msg = "Impossível realizar a atualização. O recurso solicitado não existe";
+                $responseJSON = Response::validationError($msg); 
+                return response()->json($responseJSON, 404);
+            }
+
+            $responseJSON = Response::show($setor);
+            Logger::register(LOG_NOTICE, __METHOD__ . "::OK");
+            return response()->json($responseJSON, 200);                
+        } catch (\Exception $e) {
+            Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
+            return response()->json([
+                "retcode" => -1,
+                "message" => $e->getMessage()
+            ], 500);                
+        }
+    }
 }
