@@ -1,15 +1,15 @@
 <div align="center">
-  <h1>QuironExpress</h1>
-  <p>Sistema de gerenciamento de entregas e catálogo de produtos para farmácias!</p>
-  <a href="https://www.php.net/">
-    <img src="https://img.shields.io/badge/php-v8.3.1-purple">
-  </a>
-  <a href="https://nodejs.org/pt">
-    <img src="https://img.shields.io/badge/node-v18.13.0-green">
-  </a>
-  <a href="https://react.dev/">
-    <img src="https://img.shields.io/badge/react-v18.3.1-blue">
-  </a>
+    <img src="https://i.imgur.com/3vzARPp.png">
+    <p>Sistema de gerenciamento de entregas e catálogo de produtos para farmácias!</p>
+    <a href="https://www.php.net/">
+      <img src="https://img.shields.io/badge/php-v8.3.1-purple">
+    </a>
+    <a href="https://nodejs.org/pt">
+      <img src="https://img.shields.io/badge/node-v18.13.0-green">
+    </a>
+    <a href="https://react.dev/">
+      <img src="https://img.shields.io/badge/react-v18.3.1-blue">
+    </a>
 </div>
 
 # Indice
