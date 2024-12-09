@@ -68,3 +68,61 @@
 [NOTICE][03/12/2024 - 19:32:42][b1e32088b106fcc8624ebb6f132913c9][setor-update-2] - App\Http\Controllers\SetorController::update::START
 [NOTICE][03/12/2024 - 19:32:42][b1e32088b106fcc8624ebb6f132913c9][setor-update-2] - Registros alterados - Response: {"retcode":0,"message":"Registro alterado com sucesso!","rows":[{"id":2,"nome":"Banho","created_at":"2024-12-03T22:09:44.000000Z","updated_at":"2024-12-03T22:32:42.000000Z","deleted_at":null}],"pid":"b1e32088b106fcc8624ebb6f132913c9"}
 [NOTICE][03/12/2024 - 19:32:42][b1e32088b106fcc8624ebb6f132913c9][setor-update-2] - App\Http\Controllers\SetorController::update::OK
+[NOTICE][04/12/2024 - 23:54:16][717240514afafbb27952783a3c92bad6] - App\Http\Controllers\SetorController::index::START
+[NOTICE][04/12/2024 - 23:54:17][717240514afafbb27952783a3c92bad6] - Response: {"retcode":0,"message":"Registros recuperados com sucesso!","rows":[{"id":2,"nome":"Banho","created_at":"2024-12-03T22:09:44.000000Z","updated_at":"2024-12-03T22:32:42.000000Z","deleted_at":null},{"id":3,"nome":"Mam\u00e3e e beb\u00ea","created_at":"2024-12-03T22:09:44.000000Z","updated_at":"2024-12-03T22:09:44.000000Z","deleted_at":null},{"id":4,"nome":"Beleza","created_at":"2024-12-03T22:09:44.000000Z","updated_at":"2024-12-03T22:09:44.000000Z","deleted_at":null},{"id":5,"nome":"Cabelo","created_at":"2024-12-03T22:09:44.000000Z","updated_at":"2024-12-03T22:09:44.000000Z","deleted_at":null},{"id":6,"nome":"Higiene Pessoal","created_at":"2024-12-03T22:09:44.000000Z","updated_at":"2024-12-03T22:09:44.000000Z","deleted_at":null},{"id":7,"nome":"Atadauras","created_at":"2024-12-03T22:15:31.000000Z","updated_at":"2024-12-03T22:15:31.000000Z","deleted_at":null}],"pid":"717240514afafbb27952783a3c92bad6"}
+[NOTICE][04/12/2024 - 23:54:17][717240514afafbb27952783a3c92bad6] - App\Http\Controllers\SetorController::index::OK
+[NOTICE][06/12/2024 - 23:42:18][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][06/12/2024 - 23:42:20][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][06/12/2024 - 23:42:22][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][06/12/2024 - 23:42:22][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][06/12/2024 - 23:42:23][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][06/12/2024 - 23:42:23][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - createCustomDB::START
+[NOTICE][06/12/2024 - 23:42:26][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - Banco 'pacheco-mc' criado com sucesso!
+[NOTICE][06/12/2024 - 23:42:26][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - createCustomDB::END
+[NOTICE][06/12/2024 - 23:42:26][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::START
+[NOTICE][06/12/2024 - 23:42:27][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - Usuário criado com sucesso - {"nome":"Erick Oliveira","email":"erick_santosss00@outlook.com","updated_at":"2024-12-07T02:42:27.000000Z","created_at":"2024-12-07T02:42:27.000000Z","id":1}
+[NOTICE][06/12/2024 - 23:42:27][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::OK
+[NOTICE][06/12/2024 - 23:42:27][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - postProcessFarmaciaStore::END
+[NOTICE][06/12/2024 - 23:42:27][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - Registro criado com sucesso - Response: {"retcode":0,"message":"Registro criado com sucesso!","rows":[{"nome":"FarmaCouto","nome_visualizacao":"pacheco-mc","cnpj":"33438250000167","cep":"26070374","logradouro":"Rua Carlos Henrique","complemento":null,"numero":"11","bairro":"Miguel Couto","cidade":"Nova Igua\u00e7u","uf":"RJ","updated_at":"2024-12-07T02:42:23.000000Z","created_at":"2024-12-07T02:42:23.000000Z","id":1}],"pid":"2b0bc0050718af67fbd5a8554eae650c"}
+[NOTICE][06/12/2024 - 23:42:27][2b0bc0050718af67fbd5a8554eae650c][farmacia-store] - App\Http\Controllers\FarmaciaController::store::END
+[NOTICE][06/12/2024 - 23:50:00][ec81583b137d354bf094a506fcf8a3a3] - App\Http\Controllers\SetorController::index::START
+[NOTICE][06/12/2024 - 23:50:00][ec81583b137d354bf094a506fcf8a3a3] - Response: {"retcode":0,"message":"Registros recuperados com sucesso!","rows":[{"id":1,"nome":"Medicamentos","created_at":"2024-12-07T02:42:26.000000Z","updated_at":"2024-12-07T02:42:26.000000Z","deleted_at":null},{"id":2,"nome":"Vida Saud\u00e1vel","created_at":"2024-12-07T02:42:26.000000Z","updated_at":"2024-12-07T02:42:26.000000Z","deleted_at":null},{"id":3,"nome":"Mam\u00e3e e beb\u00ea","created_at":"2024-12-07T02:42:26.000000Z","updated_at":"2024-12-07T02:42:26.000000Z","deleted_at":null},{"id":4,"nome":"Beleza","created_at":"2024-12-07T02:42:26.000000Z","updated_at":"2024-12-07T02:42:26.000000Z","deleted_at":null},{"id":5,"nome":"Cabelo","created_at":"2024-12-07T02:42:26.000000Z","updated_at":"2024-12-07T02:42:26.000000Z","deleted_at":null},{"id":6,"nome":"Higiene Pessoal","created_at":"2024-12-07T02:42:26.000000Z","updated_at":"2024-12-07T02:42:26.000000Z","deleted_at":null}],"pid":"ec81583b137d354bf094a506fcf8a3a3"}
+[NOTICE][06/12/2024 - 23:50:00][ec81583b137d354bf094a506fcf8a3a3] - App\Http\Controllers\SetorController::index::OK
+[NOTICE][09/12/2024 - 14:39:00][4adce096ce7d5fc0b97a976395cd27a1] - App\Http\Controllers\SetorController::show::START
+[NOTICE][09/12/2024 - 14:39:00][4adce096ce7d5fc0b97a976395cd27a1] - Registros consultado - Response: {"retcode":0,"message":"Registros recuperados com sucesso!","rows":{"id":1,"nome":"Medicamentos","created_at":"2024-12-07T02:42:26.000000Z","updated_at":"2024-12-07T02:42:26.000000Z","deleted_at":null},"pid":"4adce096ce7d5fc0b97a976395cd27a1"}
+[NOTICE][09/12/2024 - 14:39:00][4adce096ce7d5fc0b97a976395cd27a1] - App\Http\Controllers\SetorController::show::OK
+[NOTICE][09/12/2024 - 17:31:24][d232674ac918c5a3b8ebcd71920ab9f7][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][09/12/2024 - 17:31:27][d232674ac918c5a3b8ebcd71920ab9f7][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][09/12/2024 - 17:31:29][d232674ac918c5a3b8ebcd71920ab9f7][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][09/12/2024 - 17:31:29][d232674ac918c5a3b8ebcd71920ab9f7][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][09/12/2024 - 17:31:30][d232674ac918c5a3b8ebcd71920ab9f7][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][09/12/2024 - 17:31:30][d232674ac918c5a3b8ebcd71920ab9f7][farmacia-store] - createCustomDB::START
+[ERROR][09/12/2024 - 17:31:34][d232674ac918c5a3b8ebcd71920ab9f7][farmacia-store] - ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'tbl_categorias_setor_id_unique' (Connection: tenant, SQL: insert into `tbl_categorias` (`id`, `nome`, `setor_id`, `updated_at`, `created_at`) values (2, Primeiros Socorros, 1, 2024-12-09 17:31:34, 2024-12-09 17:31:34))
+[NOTICE][09/12/2024 - 17:32:51][d2c7bcf57f892c732daae758b14e512b][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][09/12/2024 - 17:32:51][d2c7bcf57f892c732daae758b14e512b][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][09/12/2024 - 17:32:52][d2c7bcf57f892c732daae758b14e512b][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][09/12/2024 - 17:32:52][d2c7bcf57f892c732daae758b14e512b][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][09/12/2024 - 17:32:52][d2c7bcf57f892c732daae758b14e512b][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][09/12/2024 - 17:32:52][d2c7bcf57f892c732daae758b14e512b][farmacia-store] - createCustomDB::START
+[ERROR][09/12/2024 - 17:32:52][d2c7bcf57f892c732daae758b14e512b][farmacia-store] - ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'PRIMARY' (Connection: tenant, SQL: insert into `tbl_categorias` (`id`, `nome`, `setor_id`, `updated_at`, `created_at`) values (1, Vitaminas, 2, 2024-12-09 17:32:52, 2024-12-09 17:32:52))
+[NOTICE][09/12/2024 - 17:42:34][0d11018fb01c529ab51e65300dc7c739][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][09/12/2024 - 17:42:34][0d11018fb01c529ab51e65300dc7c739][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][09/12/2024 - 17:42:35][0d11018fb01c529ab51e65300dc7c739][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][09/12/2024 - 17:42:35][0d11018fb01c529ab51e65300dc7c739][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][09/12/2024 - 17:42:35][0d11018fb01c529ab51e65300dc7c739][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][09/12/2024 - 17:42:35][0d11018fb01c529ab51e65300dc7c739][farmacia-store] - createCustomDB::START
+[ERROR][09/12/2024 - 17:42:38][0d11018fb01c529ab51e65300dc7c739][farmacia-store] - ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '4' for key 'PRIMARY' (Connection: tenant, SQL: insert into `tbl_categorias` (`id`, `nome`, `setor_id`, `updated_at`, `created_at`) values (4, Banho infantil, 3, 2024-12-09 17:42:38, 2024-12-09 17:42:38))
+[NOTICE][09/12/2024 - 17:44:24][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][09/12/2024 - 17:44:24][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][09/12/2024 - 17:44:24][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][09/12/2024 - 17:44:24][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][09/12/2024 - 17:44:24][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][09/12/2024 - 17:44:24][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - createCustomDB::START
+[NOTICE][09/12/2024 - 17:44:25][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - Banco 'pacheco-mc' criado com sucesso!
+[NOTICE][09/12/2024 - 17:44:25][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - createCustomDB::END
+[NOTICE][09/12/2024 - 17:44:25][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::START
+[NOTICE][09/12/2024 - 17:44:26][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - Usuário criado com sucesso - {"nome":"Erick Oliveira","email":"erick_santosss00@outlook.com","updated_at":"2024-12-09T20:44:26.000000Z","created_at":"2024-12-09T20:44:26.000000Z","id":1}
+[NOTICE][09/12/2024 - 17:44:26][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::OK
+[NOTICE][09/12/2024 - 17:44:26][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - postProcessFarmaciaStore::END
+[NOTICE][09/12/2024 - 17:44:26][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - Registro criado com sucesso - Response: {"retcode":0,"message":"Registro criado com sucesso!","rows":[{"nome":"FarmaCouto","nome_visualizacao":"pacheco-mc","cnpj":"33438250000167","cep":"26070374","logradouro":"Rua Carlos Henrique","complemento":null,"numero":"11","bairro":"Miguel Couto","cidade":"Nova Igua\u00e7u","uf":"RJ","updated_at":"2024-12-09T20:44:24.000000Z","created_at":"2024-12-09T20:44:24.000000Z","id":1}],"pid":"b39914347d616ed6e3d8ef3853fecd0d"}
+[NOTICE][09/12/2024 - 17:44:26][b39914347d616ed6e3d8ef3853fecd0d][farmacia-store] - App\Http\Controllers\FarmaciaController::store::END

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Setor extends Model
+class Categoria extends Model
 {
     use HasFactory;
 
@@ -14,22 +14,22 @@ class Setor extends Model
      *
      * @var string
      */
-    protected $table = 'tbl_setores';
+    protected $table = 'tbl_categorias';
 
      /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-    protected $fillable = ['id', 'nome'];
+    protected $fillable = ['id', 'nome', 'setor_id'];
 
     public function rules() {
-        return [ 'nome' => 'required|max:200' ];
+        return [ 'nome' => 'required|max:200', 'setor_id' => 'required|number' ];
     }
 
-    public function categoria() 
+    public function setor() 
     {
-        //UM setor TEM UMA categoria
-        return $this->hasOne(Categoria::class);
-    }   
+        //UMA categoria PERTENCE A UM setor
+        return $this->belongsTo(Setor::class);
+    }
 }
