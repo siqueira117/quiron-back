@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SetorController;
+use App\Http\Controllers\CategoriaController;
 use App\Models\Setores;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -49,6 +50,15 @@ Route::middleware([
         Route::delete('/{id}', [SetorController::class, 'destroy']);
         Route::get('/{id}', [SetorController::class, 'show']);
         Route::put('/{id}', [SetorController::class, 'update']);
+    });
+
+    // Categorias
+    Route::prefix("categorias")->group(function () {
+        Route::get('/', [CategoriaController::class, 'index']);
+        Route::post('/', [CategoriaController::class, 'store']);
+        Route::delete('/{id}', [CategoriaController::class, 'destroy']);
+        Route::get('/{id}', [CategoriaController::class, 'show']);
+        Route::put('/{id}', [CategoriaController::class, 'update']);
     });
 
 });

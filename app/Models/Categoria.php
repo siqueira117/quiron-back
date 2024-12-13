@@ -23,6 +23,10 @@ class Categoria extends Model
      */
     protected $fillable = ['id', 'nome', 'setor_id'];
 
+    protected $hidden = [
+        "created_at", "updated_at", "deleted_at", "setor_id"
+    ];
+
     public function rules() {
         return [ 'nome' => 'required|max:200', 'setor_id' => 'required|number' ];
     }

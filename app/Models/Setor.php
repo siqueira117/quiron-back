@@ -27,6 +27,10 @@ class Setor extends Model
         return [ 'nome' => 'required|max:200' ];
     }
 
+    protected $hidden = [
+        "created_at", "updated_at", "deleted_at"
+    ];
+
     public function categoria() 
     {
         //UM setor TEM UMA categoria
