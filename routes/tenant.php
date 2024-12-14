@@ -6,6 +6,7 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SetorController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\EntregadorController;
+use App\Http\Controllers\ClienteController;
 use App\Models\Setores;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -70,4 +71,13 @@ Route::middleware([
         Route::get('/{id}', [EntregadorController::class, 'show']);
         Route::put('/{id}', [EntregadorController::class, 'update']);
     });
+    // Clientes
+    Route::prefix("clientes")->group(function () {
+        Route::get('/', [ClienteController::class, 'index']);
+        Route::post('/', [ClienteController::class, 'store']);
+        Route::delete('/{id}', [ClienteController::class, 'destroy']);
+        Route::get('/{id}', [ClienteController::class, 'show']);
+        Route::put('/{id}', [ClienteController::class, 'update']);
+    });
+
 });

@@ -11,23 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('farmacias', function (Blueprint $table) {
+        Schema::create('tbl_cliente_enderecos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome', 150);
-            $table->string('nome_visualizacao', 150)->unique();
-            $table->char('cnpj', 14)->unique();
             $table->char('cep', 14);
             $table->string('logradouro', 150);
-            $table->string('complemento')->nullable();
-            $table->string('numero');
+            $table->string('complemento', 250)->nullable();
+            $table->string('numero', 10);
             $table->string('bairro', 150);
             $table->string('cidade', 150);
             $table->char('uf', 2);
-            $table->json('dados_receita');
             $table->timestamps();
+            $table->softDeletes();
 
-            $table->unsignedBigInteger('responsavel_id')->unique();
-            $table->foreign('responsavel_id')->references('id')->on('responsaveis')->cascadeOnDelete();
+            $table->unsignedBigInteger('cliente_id')->unique();
+            $table->foreign('cliente_id')->references('id')->on('tbl_clientes')->cascadeOnDelete();
         });
     }
 
@@ -36,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('farmacias');
+        Schema::dropIfExists('tbl_cliente_enderecos');
     }
 };
