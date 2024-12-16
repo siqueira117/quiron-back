@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SetorController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\EntregadorController;
 use App\Models\Setores;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -52,7 +53,6 @@ Route::middleware([
         Route::put('/{id}', [SetorController::class, 'update']);
     });
 
-<<<<<<< Updated upstream
     // Categorias
     Route::prefix("categorias")->group(function () {
         Route::get('/', [CategoriaController::class, 'index']);
@@ -62,7 +62,6 @@ Route::middleware([
         Route::put('/{id}', [CategoriaController::class, 'update']);
     });
 
-=======
     // Entregadores
     Route::prefix("entregadores")->group(function () {
         Route::get('/', [EntregadorController::class, 'index']);
@@ -71,5 +70,4 @@ Route::middleware([
         Route::get('/{id}', [EntregadorController::class, 'show']);
         Route::put('/{id}', [EntregadorController::class, 'update']);
     });
->>>>>>> Stashed changes
 });
