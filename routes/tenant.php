@@ -52,6 +52,7 @@ Route::middleware([
         Route::put('/{id}', [SetorController::class, 'update']);
     });
 
+<<<<<<< Updated upstream
     // Categorias
     Route::prefix("categorias")->group(function () {
         Route::get('/', [CategoriaController::class, 'index']);
@@ -61,4 +62,14 @@ Route::middleware([
         Route::put('/{id}', [CategoriaController::class, 'update']);
     });
 
+=======
+    // Entregadores
+    Route::prefix("entregadores")->group(function () {
+        Route::get('/', [EntregadorController::class, 'index']);
+        Route::post('/', [EntregadorController::class, 'store']);
+        Route::delete('/{id}', [EntregadorController::class, 'destroy']);
+        Route::get('/{id}', [EntregadorController::class, 'show']);
+        Route::put('/{id}', [EntregadorController::class, 'update']);
+    });
+>>>>>>> Stashed changes
 });
