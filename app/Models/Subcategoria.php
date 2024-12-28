@@ -31,7 +31,7 @@ class Subcategoria extends Model
         return [ 'nome' => 'required|max:200', 'categoria_id' => 'required|number' ];
     }
 
-    public function setor() 
+    public function categoria() 
     {
         //UMA subcategoria PERTENCE A UMA categoria
         return $this->belongsTo(Categoria::class);

@@ -7,6 +7,7 @@ use App\Http\Controllers\SetorController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\EntregadorController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\SubcategoriaController;
 use App\Models\Setores;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -63,6 +64,15 @@ Route::middleware([
         Route::put('/{id}', [CategoriaController::class, 'update']);
     });
 
+    // Subcategorias
+    Route::prefix("subcategorias")->group(function () {
+        Route::get('/', [SubcategoriaController::class, 'index']);
+        // Route::post('/', [CategoriaController::class, 'store']);
+        // Route::delete('/{id}', [CategoriaController::class, 'destroy']);
+        // Route::get('/{id}', [CategoriaController::class, 'show']);
+        // Route::put('/{id}', [CategoriaController::class, 'update']);
+    });
+
     // Entregadores
     Route::prefix("entregadores")->group(function () {
         Route::get('/', [EntregadorController::class, 'index']);
@@ -71,6 +81,7 @@ Route::middleware([
         Route::get('/{id}', [EntregadorController::class, 'show']);
         Route::put('/{id}', [EntregadorController::class, 'update']);
     });
+
     // Clientes
     Route::prefix("clientes")->group(function () {
         Route::get('/', [ClienteController::class, 'index']);
