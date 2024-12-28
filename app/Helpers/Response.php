@@ -77,4 +77,16 @@ class Response {
         Logger::register(LOG_NOTICE, "Registros consultado - Response: " . json_encode($responseJSON));
         return $responseJSON;
     }
+
+    public static function registrosNaoEncontrados(): array
+    {
+        $responseJSON = [
+            "retcode"   => 0,
+            "message"   => "Nenhum registro foi encontrado!",
+            "pid"       => Logger::getPID()
+        ];
+
+        Logger::register(LOG_NOTICE, "Registros consultado - Response: " . json_encode($responseJSON));
+        return $responseJSON;
+    }
 }
