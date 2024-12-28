@@ -269,3 +269,53 @@
 [NOTICE][14/12/2024 - 11:18:37][204daa85b03c7f522cc755ff11832b67][App\Http\Controllers\ClienteController-index] - App\Http\Controllers\ClienteController::index::START
 [NOTICE][14/12/2024 - 11:18:37][204daa85b03c7f522cc755ff11832b67][App\Http\Controllers\ClienteController-index] - Response: {"retcode":0,"message":"Registros recuperados com sucesso!","rows":[{"id":1,"nome":"Erick Oliveira dos Santos Siqueira","email":null,"tel_celular":"21966757404","enderecos":[]},{"id":3,"nome":"Erick Oliveira dos Santos Siqueira","email":null,"tel_celular":"21966757403","enderecos":[]},{"id":6,"nome":"Erick Oliveira dos Santos Siqueira","email":null,"tel_celular":"21966757406","enderecos":[]},{"id":8,"nome":"Erick Oliveira dos Santos Siqueira","email":null,"tel_celular":"21966757408","enderecos":[]},{"id":9,"nome":"Erick Oliveira dos Santos Siqueira","email":null,"tel_celular":"21966757401","enderecos":[]},{"id":12,"nome":"Erick Oliveira dos Santos Siqueira","email":null,"tel_celular":"21966757402","enderecos":[{"id":1,"cep":"26070374","logradouro":"Rua Carlos Henrique","complemento":null,"numero":"11","bairro":"Miguel Couto","cidade":"Nova Igua\u00e7u","uf":"RJ","cliente_id":12}]}],"pid":"204daa85b03c7f522cc755ff11832b67"}
 [NOTICE][14/12/2024 - 11:18:37][204daa85b03c7f522cc755ff11832b67][App\Http\Controllers\ClienteController-index] - App\Http\Controllers\ClienteController::index::OK
+[NOTICE][28/12/2024 - 10:49:22][e09d0c728c2b021771bd0937a06837e0][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][28/12/2024 - 10:49:23][e09d0c728c2b021771bd0937a06837e0][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][28/12/2024 - 10:49:25][e09d0c728c2b021771bd0937a06837e0][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][28/12/2024 - 10:49:25][e09d0c728c2b021771bd0937a06837e0][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][28/12/2024 - 10:49:26][e09d0c728c2b021771bd0937a06837e0][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][28/12/2024 - 10:49:26][e09d0c728c2b021771bd0937a06837e0][farmacia-store] - createCustomDB::START
+[ERROR][28/12/2024 - 10:49:29][e09d0c728c2b021771bd0937a06837e0][farmacia-store] - ERROR: Undefined array key "Primeiros Socorros"
+[NOTICE][28/12/2024 - 10:55:17][91ff0ffefcf1b77525a922fd99dc93f1][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][28/12/2024 - 10:55:17][91ff0ffefcf1b77525a922fd99dc93f1][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][28/12/2024 - 10:55:18][91ff0ffefcf1b77525a922fd99dc93f1][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][28/12/2024 - 10:55:18][91ff0ffefcf1b77525a922fd99dc93f1][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][28/12/2024 - 10:55:18][91ff0ffefcf1b77525a922fd99dc93f1][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][28/12/2024 - 10:55:18][91ff0ffefcf1b77525a922fd99dc93f1][farmacia-store] - createCustomDB::START
+[ERROR][28/12/2024 - 10:55:18][91ff0ffefcf1b77525a922fd99dc93f1][farmacia-store] - ERROR: Undefined array key "Primeiros Socorros"
+[NOTICE][28/12/2024 - 10:58:41][0134f4942399dfd03f2486fa3439f1e2][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][28/12/2024 - 10:58:41][0134f4942399dfd03f2486fa3439f1e2][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][28/12/2024 - 10:58:41][0134f4942399dfd03f2486fa3439f1e2][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][28/12/2024 - 10:58:41][0134f4942399dfd03f2486fa3439f1e2][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][28/12/2024 - 10:58:41][0134f4942399dfd03f2486fa3439f1e2][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][28/12/2024 - 10:58:41][0134f4942399dfd03f2486fa3439f1e2][farmacia-store] - createCustomDB::START
+[ERROR][28/12/2024 - 10:58:43][0134f4942399dfd03f2486fa3439f1e2][farmacia-store] - ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '263' for key 'PRIMARY' (Connection: tenant, SQL: insert into `tbl_subcategorias` (`id`, `nome`, `categoria_id`, `updated_at`, `created_at`) values (263, Shampoo, 41, 2024-12-28 10:58:43, 2024-12-28 10:58:43))
+[NOTICE][28/12/2024 - 11:05:48][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][28/12/2024 - 11:05:48][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][28/12/2024 - 11:05:48][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][28/12/2024 - 11:05:48][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][28/12/2024 - 11:05:48][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][28/12/2024 - 11:05:48][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - createCustomDB::START
+[NOTICE][28/12/2024 - 11:05:50][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - Banco 'pacheco-mc' criado com sucesso!
+[NOTICE][28/12/2024 - 11:05:50][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - createCustomDB::END
+[NOTICE][28/12/2024 - 11:05:50][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::START
+[NOTICE][28/12/2024 - 11:05:51][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - Usuário criado com sucesso - {"nome":"Erick Oliveira","email":"erick_santosss00@outlook.com","updated_at":"2024-12-28T14:05:50.000000Z","created_at":"2024-12-28T14:05:50.000000Z","id":1}
+[NOTICE][28/12/2024 - 11:05:51][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::OK
+[NOTICE][28/12/2024 - 11:05:51][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - postProcessFarmaciaStore::END
+[ERROR][28/12/2024 - 11:05:51][48bd47165d3eb66eb79aea61036d1728][farmacia-store] - ERROR: There is no active transaction
+[NOTICE][28/12/2024 - 11:08:08][0bb33adc1f1ca7ea46b42713c2c94e00][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[ERROR][28/12/2024 - 11:08:09][0bb33adc1f1ca7ea46b42713c2c94e00][farmacia-store] - ERROR: SQLSTATE[HY000] [1049] Unknown database 'quiron' (Connection: mysql, SQL: select count(*) as aggregate from `farmacias` where `nome_visualizacao` = pacheco-mc)
+[NOTICE][28/12/2024 - 11:08:23][743448bd4218f962e19e27050cd1583b][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][28/12/2024 - 11:08:23][743448bd4218f962e19e27050cd1583b][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][28/12/2024 - 11:08:23][743448bd4218f962e19e27050cd1583b][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][28/12/2024 - 11:08:23][743448bd4218f962e19e27050cd1583b][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][28/12/2024 - 11:08:23][743448bd4218f962e19e27050cd1583b][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][28/12/2024 - 11:08:23][743448bd4218f962e19e27050cd1583b][farmacia-store] - createCustomDB::START
+[NOTICE][28/12/2024 - 11:08:24][743448bd4218f962e19e27050cd1583b][farmacia-store] - Banco 'pacheco-mc' criado com sucesso!
+[NOTICE][28/12/2024 - 11:08:24][743448bd4218f962e19e27050cd1583b][farmacia-store] - createCustomDB::END
+[NOTICE][28/12/2024 - 11:08:24][743448bd4218f962e19e27050cd1583b][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::START
+[NOTICE][28/12/2024 - 11:08:24][743448bd4218f962e19e27050cd1583b][farmacia-store] - Usuário criado com sucesso - {"nome":"Erick Oliveira","email":"erick_santosss00@outlook.com","updated_at":"2024-12-28T14:08:24.000000Z","created_at":"2024-12-28T14:08:24.000000Z","id":1}
+[NOTICE][28/12/2024 - 11:08:24][743448bd4218f962e19e27050cd1583b][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::OK
+[NOTICE][28/12/2024 - 11:08:24][743448bd4218f962e19e27050cd1583b][farmacia-store] - postProcessFarmaciaStore::END
+[NOTICE][28/12/2024 - 11:08:24][743448bd4218f962e19e27050cd1583b][farmacia-store] - Registro criado com sucesso - Response: {"retcode":0,"message":"Registro criado com sucesso!","rows":[{"nome":"FarmaCouto","nome_visualizacao":"pacheco-mc","cnpj":"33438250000167","cep":"26070374","logradouro":"Rua Carlos Henrique","complemento":null,"numero":"11","bairro":"Miguel Couto","cidade":"Nova Igua\u00e7u","uf":"RJ","updated_at":"2024-12-28T14:08:23.000000Z","created_at":"2024-12-28T14:08:23.000000Z","id":1}],"pid":"743448bd4218f962e19e27050cd1583b"}
+[NOTICE][28/12/2024 - 11:08:24][743448bd4218f962e19e27050cd1583b][farmacia-store] - App\Http\Controllers\FarmaciaController::store::END

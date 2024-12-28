@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class Subcategoria extends Model
 {
     use HasFactory;
 
@@ -14,32 +14,26 @@ class Categoria extends Model
      *
      * @var string
      */
-    protected $table = 'tbl_categorias';
+    protected $table = 'tbl_subcategorias';
 
      /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-    protected $fillable = ['id', 'nome', 'setor_id'];
+    protected $fillable = ['id', 'nome', 'categoria_id'];
 
     protected $hidden = [
         "created_at", "updated_at", "deleted_at", "setor_id"
     ];
 
     public function rules() {
-        return [ 'nome' => 'required|max:200', 'setor_id' => 'required|number' ];
+        return [ 'nome' => 'required|max:200', 'categoria_id' => 'required|number' ];
     }
 
     public function setor() 
     {
-        //UMA categoria PERTENCE A UM setor
-        return $this->belongsTo(Setor::class);
-    }
-
-    public function subcategorias() 
-    {
-        // UMA categoria TEM VÁRIAS subcategorias
-        return $this->hasMany(Subcategoria::class);
+        //UMA subcategoria PERTENCE A UMA categoria
+        return $this->belongsTo(Categoria::class);
     }
 }
