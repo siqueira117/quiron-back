@@ -7,6 +7,7 @@ use App\Http\Controllers\SetorController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\EntregadorController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CupomController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Models\Setores;
 use Illuminate\Support\Facades\Route;
@@ -89,6 +90,15 @@ Route::middleware([
         Route::delete('/{id}', [ClienteController::class, 'destroy']);
         Route::get('/{id}', [ClienteController::class, 'show']);
         Route::put('/{id}', [ClienteController::class, 'update']);
+    });
+
+    // Cupons
+    Route::prefix("cupons")->group(function () {
+        Route::get('/', [CupomController::class, 'index']);
+        Route::post('/', [CupomController::class, 'store']);
+        // Route::delete('/{id}', [ClienteController::class, 'destroy']);
+        // Route::get('/{id}', [ClienteController::class, 'show']);
+        // Route::put('/{id}', [ClienteController::class, 'update']);
     });
 
 });
