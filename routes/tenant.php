@@ -95,6 +95,7 @@ Route::middleware([
     // Cupons
     Route::prefix("cupons")->group(function () {
         Route::get('/', [CupomController::class, 'index']);
+        Route::get('/{cupom}', [CupomController::class, 'show']);
         Route::post('/', [CupomController::class, 'store']);
         // Route::delete('/{id}', [ClienteController::class, 'destroy']);
         // Route::get('/{id}', [ClienteController::class, 'show']);

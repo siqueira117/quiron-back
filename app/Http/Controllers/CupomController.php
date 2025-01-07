@@ -95,4 +95,31 @@ class CupomController extends Controller
             ], 500);
         }
     }
+
+    public function show(string $cupom): JsonResponse
+    {
+        try {
+            Logger::openLog(__CLASS__."-".__FUNCTION__);
+            Logger::register(LOG_NOTICE, __METHOD__ . "::START");
+
+            $cupomRetornado = Cupom::where("codigo_cupom", $cupom)->get();
+            if (!$cupomRetornado) {
+                $msg = "Impossível realizar a atualização. O recurso solicitado não existe";
+                $responseJSON = Response::validationError($msg); 
+                return response()->json($responseJSON, 404);
+            }
+            
+            $responseJSON = Response::show($cupom);
+            Logger::register(LOG_NOTICE, __METHOD__ . "::END");
+            return response()->json($responseJSON, 200);
+        } catch (\Exception $e) {
+            Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
+            return response()->json([
+                "retcode"   => -1, 
+                "message"   => $e->getMessage(), 
+                "code"      => $e->getCode(),
+                "pid"       => Logger::getPID()
+            ], 500);
+        }
+    }
 }
