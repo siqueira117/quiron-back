@@ -51,7 +51,7 @@ class Logger {
 
     private static function generatePID(): string 
     {
-        $remoteAddr = sha1($_SERVER['REMOTE_ADDR']);
+        $remoteAddr = sha1($_SERVER['REMOTE_ADDR'] ?? "DEV");
         $first      = substr($remoteAddr, 0, 5); 
 
         if (array_key_exists($first, self::$pid)) {

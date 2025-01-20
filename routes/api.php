@@ -30,14 +30,3 @@ $router->group(['prefix' => 'farmacia'], function () use ($router) {
     $router->delete('/{id}', [FarmaciaController::class, 'destroy']);
 
 });
-
-$router->group(['prefix' => 'geoloc'], function () use ($router) {
-    $geoLoc = new GeoLoc();
-    $geoLoc
-        ->setStreet("Rua Carlos Henrique")
-        ->setNumber(11)
-        ->setCounty("Miguel Couto")
-        ->setState("Rio de Janeiro")
-        ->setCity("Nova Iguaçu")
-        ->run();
-});

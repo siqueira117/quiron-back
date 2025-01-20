@@ -278,3 +278,82 @@ nominatim@openstreetmap.org to have this block lifted.</p>
 [NOTICE][20/01/2025 - 12:48:21][1ffaf88c6b718b19ba45a662cc56439d] - >> Endpoint: https://nominatim.openstreetmap.org/search?format=json&street=11+rua+carlos+henrique&country=Brasil&county=miguel+couto&state=rio+de+janeiro&city=nova+igua%C3%A7u
 [NOTICE][20/01/2025 - 12:48:21][1ffaf88c6b718b19ba45a662cc56439d] - >> Tempo de resposta: 1.069541
 [NOTICE][20/01/2025 - 12:48:21][1ffaf88c6b718b19ba45a662cc56439d] - >> HTTP Code: 403
+[NOTICE][20/01/2025 - 13:12:53][e89dd79df04e0a4bbeb666e1fc5fcfd8] - Preparando requisição...
+[NOTICE][20/01/2025 - 13:12:53][e89dd79df04e0a4bbeb666e1fc5fcfd8] - >> Method: GET
+[NOTICE][20/01/2025 - 13:12:53][e89dd79df04e0a4bbeb666e1fc5fcfd8] - >> Headers: {"User-Agent":"PostmanRuntime\/7.43.0"}
+[NOTICE][20/01/2025 - 13:12:54][e89dd79df04e0a4bbeb666e1fc5fcfd8] - >> Response: <html>
+<head>
+<title>Access blocked</title>
+</head>
+<body>
+<h1>Access blocked</h1>
+
+<p>You have been blocked because you have violated the
+<a href="https://operations.osmfoundation.org/policies/nominatim/">usage policy</a>
+of OSM's Nominatim geocoding service. Please be aware that OSM's resources are
+limited and shared between many users. The usage policy is there to ensure that
+the service remains usable for everybody.</p>
+
+<p>Please review the terms and make sure that your
+software adheres to the terms. You should in particular verify that you have set a
+<b>custom HTTP referrer or HTTP user agent</b> that identifies your application, and
+that you are not overusing the service with massive bulk requests.</p>
+
+<p>If you feel that this block is unjustified or remains after you have adopted
+your usage, you may contact the Nominatim system administrator at
+nominatim@openstreetmap.org to have this block lifted.</p>
+</body>
+</head>
+[NOTICE][20/01/2025 - 13:12:54][e89dd79df04e0a4bbeb666e1fc5fcfd8] - >> Endpoint: https://nominatim.openstreetmap.org/search?format=json&street=11+rua+carlos+henrique&country=Brasil&county=miguel+couto&state=rio+de+janeiro&city=nova+igua%C3%A7u
+[NOTICE][20/01/2025 - 13:12:54][e89dd79df04e0a4bbeb666e1fc5fcfd8] - >> Tempo de resposta: 0.934691
+[NOTICE][20/01/2025 - 13:12:54][e89dd79df04e0a4bbeb666e1fc5fcfd8] - >> HTTP Code: 403
+[NOTICE][20/01/2025 - 13:13:18][4e03a182e436c11db77a0dcf0bb7759a] - Preparando requisição...
+[NOTICE][20/01/2025 - 13:13:18][4e03a182e436c11db77a0dcf0bb7759a] - >> Method: GET
+[NOTICE][20/01/2025 - 13:13:18][4e03a182e436c11db77a0dcf0bb7759a] - >> Headers: {"User-Agent":"PostmanRuntime\/7.43.0"}
+[NOTICE][20/01/2025 - 13:13:19][4e03a182e436c11db77a0dcf0bb7759a] - >> Response: <html>
+<head>
+<title>Access blocked</title>
+</head>
+<body>
+<h1>Access blocked</h1>
+
+<p>You have been blocked because you have violated the
+<a href="https://operations.osmfoundation.org/policies/nominatim/">usage policy</a>
+of OSM's Nominatim geocoding service. Please be aware that OSM's resources are
+limited and shared between many users. The usage policy is there to ensure that
+the service remains usable for everybody.</p>
+
+<p>Please review the terms and make sure that your
+software adheres to the terms. You should in particular verify that you have set a
+<b>custom HTTP referrer or HTTP user agent</b> that identifies your application, and
+that you are not overusing the service with massive bulk requests.</p>
+
+<p>If you feel that this block is unjustified or remains after you have adopted
+your usage, you may contact the Nominatim system administrator at
+nominatim@openstreetmap.org to have this block lifted.</p>
+</body>
+</head>
+[NOTICE][20/01/2025 - 13:13:19][4e03a182e436c11db77a0dcf0bb7759a] - >> Endpoint: https://nominatim.openstreetmap.org/search?format=json&street=11+rua+carlos+henrique&country=Brasil&county=miguel+couto&state=rio+de+janeiro&city=nova+igua%C3%A7u
+[NOTICE][20/01/2025 - 13:13:19][4e03a182e436c11db77a0dcf0bb7759a] - >> Tempo de resposta: 0.668784
+[NOTICE][20/01/2025 - 13:13:19][4e03a182e436c11db77a0dcf0bb7759a] - >> HTTP Code: 403
+[NOTICE][20/01/2025 - 13:19:03][b8d911f0d03785e8cd1808819530b8f4] - Preparando requisição...
+[NOTICE][20/01/2025 - 13:19:03][b8d911f0d03785e8cd1808819530b8f4] - >> Method: GET
+[NOTICE][20/01/2025 - 13:19:03][b8d911f0d03785e8cd1808819530b8f4] - >> Headers: {"User-Agent":"curl\/7.64.1"}
+[NOTICE][20/01/2025 - 13:19:04][b8d911f0d03785e8cd1808819530b8f4] - >> Response: {
+  "cep": "26070-374",
+  "logradouro": "Rua Carlos Henrique",
+  "complemento": "",
+  "unidade": "",
+  "bairro": "Miguel Couto",
+  "localidade": "Nova Iguaçu",
+  "uf": "RJ",
+  "estado": "Rio de Janeiro",
+  "regiao": "Sudeste",
+  "ibge": "3303500",
+  "gia": "",
+  "ddd": "21",
+  "siafi": "5869"
+}
+[NOTICE][20/01/2025 - 13:19:04][b8d911f0d03785e8cd1808819530b8f4] - >> Endpoint: https://viacep.com.br/ws/26070374/json
+[NOTICE][20/01/2025 - 13:19:04][b8d911f0d03785e8cd1808819530b8f4] - >> Tempo de resposta: 0.553743
+[NOTICE][20/01/2025 - 13:19:04][b8d911f0d03785e8cd1808819530b8f4] - >> HTTP Code: 200

@@ -5,7 +5,7 @@ namespace App\Helpers\Services;
 use App\Exceptions\GeoLocException;
 use App\Helpers\CurlRequest;
 
-class GeoLoc {
+class GeoLoc extends AbstractService {
     const API_URL_BASE  = "https://nominatim.openstreetmap.org/search";
     const VALID_FORMATS = ["xml", "json", "jsonv2", "geojson", "geocodejson"];
 
