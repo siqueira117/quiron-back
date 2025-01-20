@@ -5,7 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Http\Request;
 
-class GeoLocException extends Exception
+class CnpjaException extends Exception
 {
     public function render(Request $request)
     {       

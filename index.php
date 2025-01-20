@@ -1,11 +1,9 @@
 <?php
 
-use App\Helpers\Services\GeoLoc;
-use App\Helpers\Services\ViaCEP;
-
+use App\Helpers\Services\Cnpja;
 require_once(__DIR__."/vendor/autoload.php");
 
-$viaCep = new ViaCEP();
+$viaCep = new Cnpja();
 $viaCep
-    ->setCep("26070374")
+    ->setCnpj("00.776.574/0001-6")
     ->run();
