@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Services\GeoLoc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FarmaciaController;
@@ -28,4 +29,15 @@ $router->group(['prefix' => 'farmacia'], function () use ($router) {
     $router->put('/{id}', [FarmaciaController::class, 'update']);
     $router->delete('/{id}', [FarmaciaController::class, 'destroy']);
 
+});
+
+$router->group(['prefix' => 'geoloc'], function () use ($router) {
+    $geoLoc = new GeoLoc();
+    $geoLoc
+        ->setStreet("Rua Carlos Henrique")
+        ->setNumber(11)
+        ->setCounty("Miguel Couto")
+        ->setState("Rio de Janeiro")
+        ->setCity("Nova Iguaçu")
+        ->run();
 });

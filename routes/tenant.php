@@ -101,5 +101,4 @@ Route::middleware([
         // Route::get('/{id}', [ClienteController::class, 'show']);
         // Route::put('/{id}', [ClienteController::class, 'update']);
     });
-
 });
