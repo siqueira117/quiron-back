@@ -14,6 +14,7 @@
 
 # Indice
 - [Setup do projeto](#setup-do-projeto)
+- [Banco de dados](#banco-de-dados)
 
 # Setup do projeto
 
@@ -52,3 +53,38 @@ Obs: para executar as rotas de backend, basta iniciar o Apache, pois a configura
 E prontinho, projeto sendo executado!
 
 ![demo](https://i.imgur.com/cJc9dPY.png)
+
+# Banco de dados
+
+Utilizamos arquitetura Multi-Tenant, sendo assim, e em seu uso prático cada cliente terá seu próprio banco de dados e rotas de API.
+Cada cliente cadastrado tem seu próprio ambiente, com subdominio disponivel. 
+Por exemplo:
+
+```
+pacheco.quironex.com.br
+```
+
+## Cadastro de rotas
+
+As rotas padrões do sistema Quiron devem ser cadastradas no arquivo:
+```
+routes/api.php
+```
+
+Já as rotas ligadas aos clientes, devem ser cadastradas no arquivo:
+```
+routes/tenant.php
+```
+
+Assim, conseguimos separar as rotas dos clientes e rotas ligadas ao sistema padrão.
+As rotas ficam disponiveis da seguinte forma:
+
+Padrão:
+```
+quironex.com.br/api/farmacia/store
+```
+
+Tenant:
+```
+pacheco.quironex.com.br/api/produto/store
+```
