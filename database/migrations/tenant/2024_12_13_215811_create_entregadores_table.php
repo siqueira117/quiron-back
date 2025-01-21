@@ -1,6 +1,6 @@
 <?php
 
-use Database\Seeders\CategoriaSeeder;
+use Database\Seeders\EntregadorSeeder;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,18 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_categorias', function (Blueprint $table) {
+        Schema::create('tbl_entregadores', function (Blueprint $table) {
             $table->id();
             $table->string("nome", 200);
+            $table->string("tel_celular", 11);
             $table->timestamps();
             $table->softDeletes();
-            
-            $table->unsignedBigInteger('setor_id');
-            $table->foreign('setor_id')->references('id')->on('tbl_setores');
         });
 
-        $categoria = new CategoriaSeeder();
-        $categoria->run();
+        $entregador = new EntregadorSeeder();
+        $entregador->run();
     }
 
     /**
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_categorias');
+        Schema::dropIfExists('tbl_entregadores');
     }
 };

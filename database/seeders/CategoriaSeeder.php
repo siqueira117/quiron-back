@@ -36,7 +36,7 @@ class CategoriaSeeder extends Seeder
             "Cuidados para pele infantil"   => 20,
             "Cuidado para as mães"          => 21,
             "Acessórios para bebês"         => 22,
-            "Primeiros socorros"            => 23,
+            "Primeiros Socorros"            => 23,
             "Futuras mães"                  => 24,
             "Passeio"                       => 25
         ],

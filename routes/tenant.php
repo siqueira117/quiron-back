@@ -6,6 +6,9 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SetorController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EntregadorController;
+use App\Http\Controllers\CupomController;
+use App\Http\Controllers\SubcategoriaController;
 use App\Models\Setores;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -62,6 +65,24 @@ Route::middleware([
         Route::put('/{id}', [CategoriaController::class, 'update']);
     });
 
+    // Subcategorias
+    Route::prefix("subcategorias")->group(function () {
+        Route::get('/', [SubcategoriaController::class, 'index']);
+        // Route::post('/', [CategoriaController::class, 'store']);
+        // Route::delete('/{id}', [CategoriaController::class, 'destroy']);
+        // Route::get('/{id}', [CategoriaController::class, 'show']);
+        // Route::put('/{id}', [CategoriaController::class, 'update']);
+    });
+
+    // Entregadores
+    Route::prefix("entregadores")->group(function () {
+        Route::get('/', [EntregadorController::class, 'index']);
+        Route::post('/', [EntregadorController::class, 'store']);
+        Route::delete('/{id}', [EntregadorController::class, 'destroy']);
+        Route::get('/{id}', [EntregadorController::class, 'show']);
+        Route::put('/{id}', [EntregadorController::class, 'update']);
+    });
+
     // Clientes
     Route::prefix("clientes")->group(function () {
         Route::get('/', [ClienteController::class, 'index']);
@@ -71,4 +92,13 @@ Route::middleware([
         Route::put('/{id}', [ClienteController::class, 'update']);
     });
 
+    // Cupons
+    Route::prefix("cupons")->group(function () {
+        Route::get('/', [CupomController::class, 'index']);
+        Route::get('/{cupom}', [CupomController::class, 'show']);
+        Route::post('/', [CupomController::class, 'store']);
+        // Route::delete('/{id}', [ClienteController::class, 'destroy']);
+        // Route::get('/{id}', [ClienteController::class, 'show']);
+        // Route::put('/{id}', [ClienteController::class, 'update']);
+    });
 });

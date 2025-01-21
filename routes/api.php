@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Services\GeoLoc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FarmaciaController;

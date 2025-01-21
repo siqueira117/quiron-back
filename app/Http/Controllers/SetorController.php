@@ -36,19 +36,19 @@ class SetorController extends Controller
     public function index() {
         try {
             Logger::register(LOG_NOTICE, __METHOD__ . "::START");
-        
+
             $setores        = Setor::all();
             $responseJSON   = Response::index($setores);
-    
+
             Logger::register(LOG_NOTICE, "Response: " . json_encode($responseJSON));
             Logger::register(LOG_NOTICE, __METHOD__ . "::OK");
-            return response()->json($responseJSON, 200);                
+            return response()->json($responseJSON, 200);
         } catch (\Exception $e) {
             Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
             return response()->json([
                 "retcode" => -1,
                 "message" => $e->getMessage()
-            ], 500);                
+            ], 500);
         }
     }
 
@@ -64,7 +64,7 @@ class SetorController extends Controller
      *          description="Sucesso na criação do registro"
      *       ),
      *       @OA\Response(
-     *          response=400, 
+     *          response=400,
      *          description="Bad request"
      *       )
      *     )
@@ -76,28 +76,28 @@ class SetorController extends Controller
             Logger::openLog("setor-store");
             Logger::register(LOG_NOTICE, __METHOD__ . "::START");
 
-            $setor      = new CreateSetor(); 
+            $setor      = new CreateSetor();
             $validated  = Validator::make($request->all(), $setor->rules());
 
             if (!$validated->passes()) {
-                $responseJSON = Response::validationError($validated->errors()->all());                
+                $responseJSON = Response::validationError($validated->errors()->all());
                 return response()->json($responseJSON, 400);
             }
 
             DB::beginTransaction();
-            
+
             $setor = Setor::create(["nome" => $request->nome]);
-            
+
             DB::commit();
-            
+
             $responseJSON = Response::store($setor);
             Logger::register(LOG_NOTICE, __METHOD__ . "::END");
             return response()->json($responseJSON, 200);
         } catch (\Exception $e) {
             Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
             return response()->json([
-                "retcode"   => -1, 
-                "message"   => $e->getMessage(), 
+                "retcode"   => -1,
+                "message"   => $e->getMessage(),
                 "code"      => $e->getCode(),
                 "pid"       => Logger::getPID()
             ], 500);
@@ -113,13 +113,13 @@ class SetorController extends Controller
             DB::beginTransaction();
 
             $setor = Setor::find($id);
-    
+
             if (!$setor) {
                 $msg = "Impossível realizar a exclusão. O recurso solicitado não existe";
                 $responseJSON = Response::validationError($msg);
                 return response()->json($responseJSON, 404);
             }
-        
+
             $setor->delete();
             DB::commit();
 
@@ -129,15 +129,15 @@ class SetorController extends Controller
         } catch (\Exception $e) {
             Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
             return response()->json([
-                "retcode"   => -1, 
-                "message"   => "Erro ao excluir dados da farmácia", 
+                "retcode"   => -1,
+                "message"   => "Erro ao excluir dados da farmácia",
                 "code"      => $e->getCode(),
                 "pid"       => Logger::getPID()
             ], 500);
         }
     }
 
-    public function update($id, Request $request): JsonResponse 
+    public function update($id, Request $request): JsonResponse
     {
         try {
             Logger::openLog("setor-update-$id");
@@ -157,14 +157,14 @@ class SetorController extends Controller
 
             if (!$setor) {
                 $msg = "Impossível realizar a atualização. O recurso solicitado não existe";
-                $responseJSON = Response::validationError($msg); 
+                $responseJSON = Response::validationError($msg);
                 return response()->json($responseJSON, 404);
             }
 
             $setor->fill(["nome" => $request->nome]);
 
             $setor->save();
-            
+
             DB::commit();
 
             $responseJSON = Response::update(Setor::find($id));
@@ -173,36 +173,36 @@ class SetorController extends Controller
         } catch (\Exception $e) {
             Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
             return response()->json([
-                "retcode"   => -1, 
-                "message"   => "Erro ao alterar dados da farmácia", 
+                "retcode"   => -1,
+                "message"   => "Erro ao alterar dados da farmácia",
                 "code"      => $e->getCode(),
                 "pid"       => Logger::getPID()
             ], 500);
         }
     }
 
-    public function show($id): JsonResponse 
+    public function show($id): JsonResponse
     {
         try {
             Logger::register(LOG_NOTICE, __METHOD__ . "::START");
-        
+
             $setor = Setor::find($id);
 
             if (!$setor) {
                 $msg = "Impossível realizar a atualização. O recurso solicitado não existe";
-                $responseJSON = Response::validationError($msg); 
+                $responseJSON = Response::validationError($msg);
                 return response()->json($responseJSON, 404);
             }
 
             $responseJSON = Response::show($setor);
             Logger::register(LOG_NOTICE, __METHOD__ . "::OK");
-            return response()->json($responseJSON, 200);                
+            return response()->json($responseJSON, 200);
         } catch (\Exception $e) {
             Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
             return response()->json([
                 "retcode" => -1,
                 "message" => $e->getMessage()
-            ], 500);                
+            ], 500);
         }
     }
 }

@@ -220,9 +220,13 @@ class FarmaciaController extends Controller
                 return response()->json($responseJSON, 400);
             }
 
+            //DB::beginTransaction();
+
             $dadosReceita   = $this->consultaDadosReceita($request->cnpj);
             $farmaciaCriada = $this->storeFarmaciaEResponsavel($request, $dadosReceita);
             $this->postProcessFarmaciaStore($request);
+
+            //DB::commit();
 
             $responseJSON = [
                 "retcode"   => 0,
@@ -235,6 +239,7 @@ class FarmaciaController extends Controller
 
             return response()->json($responseJSON, 200);
         } catch (\Exception $e) {
+            //DB::rollBack();
             Logger::register(LOG_ERR, "ERROR: " . $e->getMessage());
             return response()->json([
                 "retcode"   => -1, 
@@ -270,8 +275,6 @@ class FarmaciaController extends Controller
 
     private function storeFarmaciaEResponsavel(Request $request, string $dadosReceita): Farmacia 
     {
-        DB::beginTransaction();
-
         $responsavel = Responsavel::create(
             [
                 "nome"      => $request->responsavel['nome'],
@@ -297,7 +300,6 @@ class FarmaciaController extends Controller
             ]
         );
 
-        DB::commit();
         return $farmacia;
     }
 
@@ -329,7 +331,6 @@ class FarmaciaController extends Controller
         Logger::register(LOG_NOTICE, __METHOD__ . "::START");
 
         $tenant->run(function () use ($responsavel) {
-            DB::beginTransaction();
 
             $usuario = Usuario::create([
                 'nome' => $responsavel["nome"],
@@ -337,7 +338,6 @@ class FarmaciaController extends Controller
                 'senha' => Password::generate($responsavel["senha"])
             ]);
 
-            DB::commit();
             Logger::register(LOG_NOTICE, "Usuário criado com sucesso - " . json_encode($usuario));
         });
 

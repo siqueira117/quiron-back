@@ -36,4 +36,10 @@ class Categoria extends Model
         //UMA categoria PERTENCE A UM setor
         return $this->belongsTo(Setor::class);
     }
+
+    public function subcategorias() 
+    {
+        // UMA categoria TEM VÁRIAS subcategorias
+        return $this->hasMany(Subcategoria::class);
+    }
 }
