@@ -76,11 +76,11 @@ Route::middleware([
 
     // Entregadores
     Route::prefix("entregadores")->group(function () {
-        Route::get('/', [EntregadorController::class, 'index']);
-        Route::post('/', [EntregadorController::class, 'store']);
-        Route::delete('/{id}', [EntregadorController::class, 'destroy']);
-        Route::get('/{id}', [EntregadorController::class, 'show']);
-        Route::put('/{id}', [EntregadorController::class, 'update']);
+        Route::get('/index', [App\Http\Controllers\EntregadorController::class, 'index'])->name('entregadores.index');
+        Route::post('/store', [App\Http\Controllers\EntregadorController::class, 'store'])->name('entregadores.store');
+        Route::get('/show/{id}', [App\Http\Controllers\EntregadorController::class, 'show'])->name('entregadores.show');
+        Route::put('/update/{id}', [App\Http\Controllers\EntregadorController::class, 'update'])->name('entregadores.update');
+        Route::delete('/destroy/{id}', [App\Http\Controllers\EntregadorController::class, 'destroy'])->name('entregadores.destroy');
     });
 
     // Clientes
@@ -101,14 +101,5 @@ Route::middleware([
         // Route::get('/{id}', [ClienteController::class, 'show']);
         // Route::put('/{id}', [ClienteController::class, 'update']);
     });
-
-    // Entregadores
-    Route::prefix("entregadores")->group(function () {
-        Route::get('/index', [App\Http\Controllers\EntregadorController::class, 'index'])->name('index');
-        Route::post('/store', [App\Http\Controllers\EntregadorController::class, 'store'])->name('store');
-        Route::get('/show', [App\Http\Controllers\EntregadorController::class, 'show'])->name('show');
-        Route::put('/update', [App\Http\Controllers\EntregadorController::class, 'update'])->name('update');
-        Route::delete('/destroy', [App\Http\Controllers\EntregadorController::class, 'destroy'])->name('destroy');
-    }
 
 });
