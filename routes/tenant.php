@@ -101,4 +101,14 @@ Route::middleware([
         // Route::get('/{id}', [ClienteController::class, 'show']);
         // Route::put('/{id}', [ClienteController::class, 'update']);
     });
+
+    // Entregadores
+    Route::prefix("entregadores")->group(function () {
+        Route::get('/index', [App\Http\Controllers\EntregadorController::class, 'index'])->name('index');
+        Route::post('/store', [App\Http\Controllers\EntregadorController::class, 'store'])->name('store');
+        Route::get('/show', [App\Http\Controllers\EntregadorController::class, 'show'])->name('show');
+        Route::put('/update', [App\Http\Controllers\EntregadorController::class, 'update'])->name('update');
+        Route::delete('/destroy', [App\Http\Controllers\EntregadorController::class, 'destroy'])->name('destroy');
+    }
+
 });
