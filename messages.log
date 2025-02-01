@@ -638,3 +638,8 @@ nominatim@openstreetmap.org to have this block lifted.</p>
 [NOTICE][20/01/2025 - 14:06:58][2a2dc1e27dcfa3762f0b4340872f853b] - >> Tempo de resposta: 0.559388
 [NOTICE][20/01/2025 - 14:06:58][2a2dc1e27dcfa3762f0b4340872f853b] - >> HTTP Code: 200
 >>>>>>> ef0e30a9f2618f7068fe621d466959af63cededd
+[NOTICE][01/02/2025 - 10:53:27][ef2b7bf82b1a4e28766072d12f57f5ac][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::START
+[NOTICE][01/02/2025 - 10:54:28][edff024c6065e961e186d1406dccdc4a][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::START
+[NOTICE][01/02/2025 - 10:58:08][295a85fb030c3f5834105aae895ce0a9][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::START
+[NOTICE][01/02/2025 - 10:59:02][91f9bf4617e63842f516cc8e84028c7b][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::START
+[NOTICE][01/02/2025 - 10:59:31][29da4578e75a8e7dfa95f98558a2665d][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::START
