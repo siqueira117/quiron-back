@@ -22,12 +22,15 @@ class CreateProduto extends FormRequest
     public function rules(): array
     {
         return [
-            "nome" => "required|max:200|string",
-            "valor" => "required|numeric",
-            "descricao" => "required|string",
-            "detalhes" => "nullable|json",
-            "estoque_quantidade" => "nullable|integer",
-            "subcategoria_id" => "required|integer"
+            "nome"                  => "required|max:200|string",
+            "valor"                 => "required|numeric",
+            "descricao"             => "required|string",
+            "imagem"                => "nullable|image",
+            "sku"                   => "string|max:200",
+            "ean"                   => "string|max:200",
+            "detalhes"              => "nullable|json",
+            "estoque_quantidade"    => "nullable|integer",
+            "subcategoria_id"       => "required|integer"
         ];
     }
 }
