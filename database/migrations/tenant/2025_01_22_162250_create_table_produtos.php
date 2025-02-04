@@ -20,7 +20,11 @@ return new class extends Migration
             $table->string("sku", 200)->nullable()->default(null);
             $table->string("ean", 200)->nullable()->default(null);
             $table->json("detalhes")->nullable()->default(null);
+            $table->integer("estoque_quantidade")->nullable()->default(null);
             
+            $table->unsignedBigInteger('subcategoria_id');
+            $table->foreign('subcategoria_id')->references('id')->on('tbl_subcategorias');
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_produtos');
+        Schema::dropIfExists('tbl_produtos');
     }
 };

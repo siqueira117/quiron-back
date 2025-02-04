@@ -7,7 +7,9 @@ use App\Http\Requests\CreateProduto;
 use App\Models\Produto;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -39,29 +41,40 @@ class ProdutoController extends Controller
             Logger::openLog("produto-store-".tenant("id"));
             Logger::register(LOG_NOTICE, __METHOD__ . "::START");
 
-            // $produto   = new CreateProduto(); 
-            // $validated = Validator::make($request->all(), $produto->rules());
+            // Realiza as validações necessárias
+            $produto   = new CreateProduto(); 
+            $validated = Validator::make($request->all(), $produto->rules());
 
-            // if (!$validated->passes()) {
-            //     $responseJSON = Response::validationError($validated->errors()->all());
-            //     Logger::register(LOG_ERR, __METHOD__ . " - Erro de validação - " . json_encode($responseJSON));
-            //     return response()->json($responseJSON, 400);
-            // }
+            if (!$validated->passes()) {
+                $responseJSON = Response::validationError($validated->errors()->all());
+                Logger::register(LOG_ERR, __METHOD__ . " - Erro de validação - " . json_encode($responseJSON));
+                return response()->json($responseJSON, 400);
+            }
+            // ===================================
 
-            // Obtém o tenant atual
-            $tenant = tenant();
+            // Guarda imagem no storage local
+            $file = $request->file('imagem');
+            $url = $this->addImageOnStorage($file);
+            $imgUri = parse_url($url)["path"];
+            // ===================================
 
-            // Define o diretório do tenant no storage
-            $path = "tenants/{$tenant->id}/uploads";
+            // Cria produto
+            $produto = Produto::create([
+                "nome"                  => $request["nome"],
+                "valor"                 => $request["valor"],
+                "descricao"             => $request["descricao"],
+                "img_uri"               => $imgUri,
+                "sku"                   => $request["sku"]                  ?? null,
+                "ean"                   => $request["ean"]                  ?? null,
+                "detalhes"              => $request["detalhes"]             ?? null,
+                "estoque_quantidade"    => $request["estoque_quantidade"]   ?? null,
+                "subcategoria_id"       => $request["subcategoria_id"]      ?? null
+            ]);
+            // ===================================
 
-            // Salva o arquivo e gera um nome único
-            $file = $request->file('file');
-            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
-            
-            //First Parameter is the Folder Name and Second Parameter is the File Object
-            $stored = Storage::disk('public')->put("produtos/$filename", $file);
-            $url = tenant_asset($stored);
-            return response()->json(['success' =>$url], 200);
+            $responseJSON = Response::store($produto);
+            Logger::register(LOG_NOTICE, __METHOD__ . "::END");
+            return response()->json($responseJSON, 200);
         } catch (\Exception $e) {
             Logger::register(LOG_ERR, "ERROR: " . $e->getMessage() . " | FILE: " . $e->getFile() . " : " . $e->getLine());
             return response()->json([
@@ -69,5 +82,14 @@ class ProdutoController extends Controller
                 "message" => $e->getMessage()
             ], 500);  
         }
+    }
+
+    private function addImageOnStorage(UploadedFile $file): string
+    {
+        // Recupera tenant usado
+        $tenant = tenant();
+            
+        $stored = Storage::disk('public')->put("tenants/{$tenant->id}/produtos", $file);
+        return tenant_asset($stored);
     }
 }
