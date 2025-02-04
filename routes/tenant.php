@@ -108,6 +108,7 @@ Route::middleware([
         //Route::get('/{cupom}', [CupomController::class, 'show']);
         Route::post('/store', [ProdutoController::class, 'store']);
         // Route::delete('/{id}', [ClienteController::class, 'destroy']);
+        Route::get('/show/{id}', [ProdutoController::class, 'show']);
         // Route::get('/{id}', [ClienteController::class, 'show']);
         // Route::put('/{id}', [ClienteController::class, 'update']);
     });
