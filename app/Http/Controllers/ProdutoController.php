@@ -59,6 +59,8 @@ class ProdutoController extends Controller
             $imgUri = parse_url($url)["path"];
             // ===================================
 
+            DB::beginTransaction();
+
             // Cria produto
             $produto = Produto::create([
                 "nome"                  => $request["nome"],
@@ -73,10 +75,22 @@ class ProdutoController extends Controller
             ]);
             // ===================================
 
+            if ($request["estoque_quantidade"]) {
+                $estoqueProdutoID = ProdutoEstoqueController::addEstoque($produto->id, $request["estoque_quantidade"]);
+                MovimentacaoEstoqueController::addMovimentacao(
+                    $estoqueProdutoID, 
+                    $request["estoque_quantidade"], 
+                    MovimentacaoEstoqueController::OPER_ENTRADA
+                );
+            }
+
+            DB::commit();
+
             $responseJSON = Response::store($produto);
             Logger::register(LOG_NOTICE, __METHOD__ . "::END");
             return response()->json($responseJSON, 200);
         } catch (\Exception $e) {
+            DB::rollBack();
             Logger::register(LOG_ERR, "ERROR: " . $e->getMessage() . " | FILE: " . $e->getFile() . " : " . $e->getLine());
             return response()->json([
                 "retcode" => -1,
