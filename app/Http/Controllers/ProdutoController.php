@@ -58,9 +58,9 @@ class ProdutoController extends Controller
             $url = $this->addImageOnStorage($file);
             $imgUri = parse_url($url)["path"];
             // ===================================
-
+          
             DB::beginTransaction();
-
+          
             // Cria produto
             $produto = Produto::create([
                 "nome"                  => $request["nome"],
@@ -125,5 +125,14 @@ class ProdutoController extends Controller
                 "message" => $e->getMessage()
             ], 500);  
         }
+    }
+
+    private function addImageOnStorage(UploadedFile $file): string
+    {
+        // Recupera tenant usado
+        $tenant = tenant();
+            
+        $stored = Storage::disk('public')->put("tenants/{$tenant->id}/produtos", $file);
+        return tenant_asset($stored);
     }
 }
