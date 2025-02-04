@@ -58,9 +58,9 @@ class ProdutoController extends Controller
             $url = $this->addImageOnStorage($file);
             $imgUri = parse_url($url)["path"];
             // ===================================
-
+          
             DB::beginTransaction();
-
+          
             // Cria produto
             $produto = Produto::create([
                 "nome"                  => $request["nome"],
