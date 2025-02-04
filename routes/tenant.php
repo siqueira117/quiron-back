@@ -102,4 +102,14 @@ Route::middleware([
         // Route::put('/{id}', [ClienteController::class, 'update']);
     });
 
+    // Produtos
+    Route::prefix("produtos")->group(function () {
+        //Route::get('/', [CupomController::class, 'index']);
+        //Route::get('/{cupom}', [CupomController::class, 'show']);
+        Route::post('/store', [ProdutoController::class, 'store']);
+        // Route::delete('/{id}', [ClienteController::class, 'destroy']);
+        // Route::get('/{id}', [ClienteController::class, 'show']);
+        // Route::put('/{id}', [ClienteController::class, 'update']);
+    });
+
 });
