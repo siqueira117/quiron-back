@@ -32,3 +32,81 @@
 [NOTICE][04/02/2025 - 09:25:14][63511155f7b51ce27383e1a070b2a293][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::START
 [NOTICE][04/02/2025 - 09:25:14][63511155f7b51ce27383e1a070b2a293][produto-store-pacheco-mc] - Registro criado com sucesso - Response: {"retcode":0,"message":"Registro criado com sucesso!","rows":[{"nome":"Novalgina Dipirona 1g 10 comprimidos efervescentes Sabor Lim\u00e3o","valor":"35.84","descricao":"10 Comprimidos Efervescentes","img_uri":"\/tenancy\/assets\/tenants\/pacheco-mc\/produtos\/RjkOfNTQKCNyGhudPh9hZC9mwFgjVqnRvJZGbhKb.webp","sku":"41958","ean":"7891058015756","detalhes":null,"estoque_quantidade":null,"subcategoria_id":"39","id":1}],"pid":"63511155f7b51ce27383e1a070b2a293"}
 [NOTICE][04/02/2025 - 09:25:14][63511155f7b51ce27383e1a070b2a293][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::END
+[NOTICE][04/02/2025 - 12:03:49][ce6225c73dddd0b11b4b30a107f0a3a7][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][04/02/2025 - 12:03:50][ce6225c73dddd0b11b4b30a107f0a3a7][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][04/02/2025 - 12:03:53][ce6225c73dddd0b11b4b30a107f0a3a7][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][04/02/2025 - 12:03:53][ce6225c73dddd0b11b4b30a107f0a3a7][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][04/02/2025 - 12:03:53][ce6225c73dddd0b11b4b30a107f0a3a7][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][04/02/2025 - 12:03:53][ce6225c73dddd0b11b4b30a107f0a3a7][farmacia-store] - createCustomDB::START
+[ERROR][04/02/2025 - 12:03:55][ce6225c73dddd0b11b4b30a107f0a3a7][farmacia-store] - ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DELIMITER $$
+                CREATE PROCEDURE getProdutoComCategoria(IN id BI...' at line 1 (Connection: tenant, SQL: DELIMITER $$
+                CREATE PROCEDURE getProdutoComCategoria(IN id BIGINT)
+                BEGIN
+                    SELECT 
+                        tbl_produtos.*,	
+                        tbl_subcategorias.nome AS nome_subcategoria,
+                        tbl_categorias.nome AS nome_categoria,
+                        tbl_setores.nome AS nome_setor
+                    FROM tbl_produtos
+                    INNER JOIN tbl_subcategorias 
+                        ON tbl_produtos.subcategoria_id = tbl_subcategorias.id
+                    INNER JOIN tbl_categorias 
+                        ON tbl_subcategorias.categoria_id = tbl_categorias.id
+                    INNER JOIN tbl_setores
+                        ON tbl_categorias.setor_id = tbl_setores.id
+                    WHERE tbl_produtos.id = id;
+                END $$
+            DELIMITER ;)
+[NOTICE][04/02/2025 - 12:04:29][94678013f2af5a4f9f20fc7147d8203f][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[ERROR][04/02/2025 - 12:04:30][94678013f2af5a4f9f20fc7147d8203f][farmacia-store] - App\Http\Controllers\FarmaciaController::store - Erro de validação - {"retcode":-1,"message":["The nome visualizacao has already been taken.","The cnpj has already been taken."],"pid":"94678013f2af5a4f9f20fc7147d8203f"}
+[NOTICE][04/02/2025 - 12:04:48][a6a85fa96979e6795bcf6edd701fab1e][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][04/02/2025 - 12:04:48][a6a85fa96979e6795bcf6edd701fab1e][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][04/02/2025 - 12:04:49][a6a85fa96979e6795bcf6edd701fab1e][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][04/02/2025 - 12:04:49][a6a85fa96979e6795bcf6edd701fab1e][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][04/02/2025 - 12:04:49][a6a85fa96979e6795bcf6edd701fab1e][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][04/02/2025 - 12:04:49][a6a85fa96979e6795bcf6edd701fab1e][farmacia-store] - createCustomDB::START
+[ERROR][04/02/2025 - 12:04:49][a6a85fa96979e6795bcf6edd701fab1e][farmacia-store] - ERROR: Tenant cannot be created. Reason: Database pacheco-mc already exists.
+[NOTICE][04/02/2025 - 12:05:13][1291f4156abe5488075c52b27590bcde][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][04/02/2025 - 12:05:13][1291f4156abe5488075c52b27590bcde][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][04/02/2025 - 12:05:13][1291f4156abe5488075c52b27590bcde][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][04/02/2025 - 12:05:13][1291f4156abe5488075c52b27590bcde][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][04/02/2025 - 12:05:13][1291f4156abe5488075c52b27590bcde][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][04/02/2025 - 12:05:13][1291f4156abe5488075c52b27590bcde][farmacia-store] - createCustomDB::START
+[ERROR][04/02/2025 - 12:05:15][1291f4156abe5488075c52b27590bcde][farmacia-store] - ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '$$' at line 16 (Connection: tenant, SQL: CREATE PROCEDURE getProdutoComCategoria(IN id BIGINT)
+                BEGIN
+                    SELECT 
+                        tbl_produtos.*,	
+                        tbl_subcategorias.nome AS nome_subcategoria,
+                        tbl_categorias.nome AS nome_categoria,
+                        tbl_setores.nome AS nome_setor
+                    FROM tbl_produtos
+                    INNER JOIN tbl_subcategorias 
+                        ON tbl_produtos.subcategoria_id = tbl_subcategorias.id
+                    INNER JOIN tbl_categorias 
+                        ON tbl_subcategorias.categoria_id = tbl_categorias.id
+                    INNER JOIN tbl_setores
+                        ON tbl_categorias.setor_id = tbl_setores.id
+                    WHERE tbl_produtos.id = id;
+                END $$)
+[NOTICE][04/02/2025 - 12:06:39][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - App\Http\Controllers\FarmaciaController::store::START
+[NOTICE][04/02/2025 - 12:06:39][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::START
+[NOTICE][04/02/2025 - 12:06:40][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - Dados da receita gravados com sucesso!
+[NOTICE][04/02/2025 - 12:06:40][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - App\Http\Controllers\FarmaciaController::consultaDadosReceita::OK
+[NOTICE][04/02/2025 - 12:06:40][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - postProcessFarmaciaStore::START
+[NOTICE][04/02/2025 - 12:06:40][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - createCustomDB::START
+[NOTICE][04/02/2025 - 12:06:42][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - Banco 'pacheco-mc' criado com sucesso!
+[NOTICE][04/02/2025 - 12:06:42][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - createCustomDB::END
+[NOTICE][04/02/2025 - 12:06:42][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::START
+[NOTICE][04/02/2025 - 12:06:43][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - Usuário criado com sucesso - {"nome":"Erick Oliveira","email":"erick_santosss00@outlook.com","updated_at":"2025-02-04T15:06:43.000000Z","created_at":"2025-02-04T15:06:43.000000Z","id":1}
+[NOTICE][04/02/2025 - 12:06:43][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - App\Http\Controllers\FarmaciaController::createUserForResponsavel::OK
+[NOTICE][04/02/2025 - 12:06:43][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - postProcessFarmaciaStore::END
+[NOTICE][04/02/2025 - 12:06:43][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - Registro criado com sucesso - Response: {"retcode":0,"message":"Registro criado com sucesso!","rows":[{"nome":"FarmaCouto","nome_visualizacao":"pacheco-mc","cnpj":"33438250000167","cep":"26070374","logradouro":"Rua Carlos Henrique","complemento":null,"numero":"11","bairro":"Miguel Couto","cidade":"Nova Igua\u00e7u","uf":"RJ","updated_at":"2025-02-04T15:06:40.000000Z","created_at":"2025-02-04T15:06:40.000000Z","id":1}],"pid":"c5bfdf15072bd044f35104ebd7281c7a"}
+[NOTICE][04/02/2025 - 12:06:43][c5bfdf15072bd044f35104ebd7281c7a][farmacia-store] - App\Http\Controllers\FarmaciaController::store::END
+[NOTICE][04/02/2025 - 12:13:51][e2d7e7a18da563eeecd017b055ec93c5][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::START
+[NOTICE][04/02/2025 - 12:14:36][74ba910a1eff42feead13a8430d46830][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::START
+[NOTICE][04/02/2025 - 12:15:11][e206a0f7fca5f528db01e9b2b6950276][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::START
+[NOTICE][04/02/2025 - 12:15:11][e206a0f7fca5f528db01e9b2b6950276][produto-store-pacheco-mc] - Registro criado com sucesso - Response: {"retcode":0,"message":"Registro criado com sucesso!","rows":[{"nome":"Novalgina Dipirona 1g 10 comprimidos efervescentes Sabor Lim\u00e3o","valor":"35.84","descricao":"10 Comprimidos Efervescentes","img_uri":"\/tenancy\/assets\/tenants\/pacheco-mc\/produtos\/2IJcvGdMuyvRDD0o0xmgZTLCOBeG5vRTNBiwW9sP.webp","sku":"41958","ean":"7891058015756","detalhes":null,"estoque_quantidade":null,"subcategoria_id":"39","id":1}],"pid":"e206a0f7fca5f528db01e9b2b6950276"}
+[NOTICE][04/02/2025 - 12:15:11][e206a0f7fca5f528db01e9b2b6950276][produto-store-pacheco-mc] - App\Http\Controllers\ProdutoController::store::END
+[NOTICE][04/02/2025 - 12:16:08][24e6fe9b439675bf665eadf96a893235][App\Http\Controllers\ProdutoController-show] - App\Http\Controllers\ProdutoController::show::START
+[NOTICE][04/02/2025 - 12:16:08][24e6fe9b439675bf665eadf96a893235][App\Http\Controllers\ProdutoController-show] - Registros consultado - Response: {"retcode":0,"message":"Registros recuperados com sucesso!","rows":[{"id":1,"nome":"Novalgina Dipirona 1g 10 comprimidos efervescentes Sabor Lim\u00e3o","valor":35.84,"descricao":"10 Comprimidos Efervescentes","img_uri":"\/tenancy\/assets\/tenants\/pacheco-mc\/produtos\/2IJcvGdMuyvRDD0o0xmgZTLCOBeG5vRTNBiwW9sP.webp","sku":"41958","ean":"7891058015756","detalhes":null,"estoque_quantidade":null,"subcategoria_id":39,"created_at":"2025-02-04 12:15:11","updated_at":"2025-02-04 12:15:11","deleted_at":null,"nome_subcategoria":"Para dor e febre","nome_categoria":"Rem\u00e9dios","nome_setor":"Medicamentos"}],"pid":"24e6fe9b439675bf665eadf96a893235"}
+[NOTICE][04/02/2025 - 12:16:08][24e6fe9b439675bf665eadf96a893235][App\Http\Controllers\ProdutoController-show] - App\Http\Controllers\ProdutoController::show::END

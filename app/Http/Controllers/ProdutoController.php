@@ -8,6 +8,7 @@ use App\Models\Produto;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
@@ -91,5 +92,24 @@ class ProdutoController extends Controller
             
         $stored = Storage::disk('public')->put("tenants/{$tenant->id}/produtos", $file);
         return tenant_asset($stored);
+    }
+
+    public function show(string $id): JsonResponse
+    {
+        try {
+            Logger::openLog(__CLASS__."-".__FUNCTION__);
+            Logger::register(LOG_NOTICE, __METHOD__ . "::START");
+
+            $return = DB::select("CALL getProdutoComCategoria(?)", [$id]);
+            $responseJSON = Response::show($return);
+            Logger::register(LOG_NOTICE, __METHOD__ . "::END");
+            return response()->json($responseJSON, 200);
+        } catch (\Exception $e) {
+            Logger::register(LOG_ERR, "ERROR: " . $e->getMessage() . " | FILE: " . $e->getFile() . " : " . $e->getLine());
+            return response()->json([
+                "retcode" => -1,
+                "message" => $e->getMessage()
+            ], 500);  
+        }
     }
 }
